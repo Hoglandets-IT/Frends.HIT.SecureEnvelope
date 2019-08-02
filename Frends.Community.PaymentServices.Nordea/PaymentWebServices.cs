@@ -17,7 +17,7 @@ namespace Frends.Community.PaymentServices.Nordea
     public class WebServices
     {
         /// <summary>
-        /// Fetches user info from the web service. 
+        /// Fetches information on authorized user file types and service IDs. 
         /// In case of an error an exception is thrown.
         /// </summary>
         /// <returns>JToken. Properties: FileReference, TargetId</returns>
@@ -47,7 +47,7 @@ namespace Frends.Community.PaymentServices.Nordea
         }
 
         /// <summary>
-        /// DownloadFileList fetches a filelist from the web service. 
+        /// DownloadFileList downloads a list of files available for download from Nordea.
         /// Files can be filtered with different parameters: FileType, StartDate, EndDate or Status.
         /// In case of an error an exception is thrown.
         /// </summary>
@@ -89,12 +89,12 @@ namespace Frends.Community.PaymentServices.Nordea
         }
 
         /// <summary>
-        /// Uploads a file to the web service. 
+        /// Uploads a file to Nordea. 
         /// File type needs to be specified for the file.
         /// File content is compressed by GZIP.
         /// In case of an error an exception is thrown.
         /// </summary>
-        /// <returns>JToken. Properties: FileReference, TargetId, ParentFileReference, FileType, FileTimestamp, Status</returns>
+        /// <returns>JToken. Properties: CustomerId, Timestamp, ResponseCode, Encrypted, Compressed, AmountTotal, TransactionCount</returns>
         public static JToken UploadFile(UploadFileInput input, CancellationToken cancellationToken)
         {
             string customerId = input.CustomerId;

@@ -64,7 +64,7 @@ namespace Frends.Community.PaymentServices.Nordea.Definitions
         public string FileEncoding { get; set; }
 
         /// <summary>
-        /// File type to download (e.g. "pain.001.001.02").
+        /// Optional parameter for filtering downloaded files (e.g. "pain.001.001.02").
         /// </summary>
         [Required]
         [DisplayFormat(DataFormatString = "Text")]

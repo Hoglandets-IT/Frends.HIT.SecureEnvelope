@@ -82,7 +82,7 @@ namespace Frends.Community.PaymentServices.Nordea.Definitions
 
         /// <summary>
         /// Optional parameter Status can be used to filter filelist.
-        /// Valid values for files are "NEW" or "DOWNLOADED" (NEW = files not downloaded yet. DLD = files already downloaded).
+        /// Valid values for are "NEW", "DOWNLOADED" and "ALL" (NEW = files not downloaded yet. DOWNLOADED = files already downloaded. ALL = fetch all available files).
         /// If no parameter is given or if the status is "ALL", all files will be listed.
         /// </summary>
         [DisplayFormat(DataFormatString = "Text")]
