@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Frends.Community.PaymentServices.Nordea</name>
+    </assembly>
+    <members>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.GetUserInfoInput.Url">
+            <summary>
+            Url of the web service (e.g. "http://filetransfer.test.nordea.com/services/CorporateFileService").
+            Note that test environment is available only when Corporate eGateway service is used.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.GetUserInfoInput.CertificateIssuedBy">
+            <summary>
+            The issuer of the X509Certificate2 certificate object to used for signing web service calls. First matching certificate is used.
+            An Exception is thrown if a certificate is not found or it has already expired.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.GetUserInfoInput.Environment">
+            <summary>
+            Environment to be used for the web service. Valid values are "TEST" or "PRODUCTION".
+            When testing against production, this has to be "TEST" or the files will be processed as
+            actual production files.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.GetUserInfoInput.CustomerId">
+            <summary>
+            Customer Id number. The certificate needs to be assigned to the same customer id (e.g. "1234567890").
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.GetUserInfoInput.TargetId">
+            <summary>
+            Optional. The logical folder name where the file(s) of the customer are stored in the bank.
+            A user can have access to several folders.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.GetUserInfoInput.RequestId">
+            <summary>
+            Request Id is the web service call id number which needs to be unique for at least 3 months.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.GetUserInfoInput.ConnectionTimeOutSeconds">
+            <summary>
+            Timeout in seconds to be used for the connection and operation.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.Url">
+            <summary>
+            Url of the web service (e.g. "http://filetransfer.test.nordea.com/services/CorporateFileService").
+            Note that test environment is available only when Corporate eGateway service is used.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.CertificateIssuedBy">
+            <summary>
+            The issuer of the X509Certificate2 certificate object to used for signing web service calls. First matching certificate is used.
+            An Exception is thrown if a certificate is not found or it has already expired.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.Environment">
+            <summary>
+            Environment to be used for the web service. Valid values are "TEST" or "PRODUCTION".
+            When testing against production, this has to be "TEST" or the files will be processed as
+            actual production files.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.CustomerId">
+            <summary>
+            Customer Id number. The certificate needs to be assigned to the same customer id (e.g. "1234567890").
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.RequestId">
+            <summary>
+            Request Id is the web service call id number which needs to be unique for at least 3 months.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.FileReference">
+            <summary>
+            File reference id to be downloaded (e.g. "123456").
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.FileEncoding">
+            <summary>
+            Encoding of the file to be download, if empty UTF8 will be used.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.FileType">
+            <summary>
+            File type to download (e.g. "pain.001.001.02").
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.TargetId">
+            <summary>
+            The logical folder name where the file(s) of the customer are stored in the bank. A user can have access to several folders.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.Status">
+            <summary>
+            Optional parameter Status can be used to filter filelist.
+            Valid values for files are "NEW" or "DOWNLOADED" (NEW = files not downloaded yet. DLD = files already downloaded).
+            If no parameter is given or if the status is "ALL", all files will be listed.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput.ConnectionTimeOutSeconds">
+            <summary>
+            Timeout in seconds to be used for the connection and operation.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.Url">
+            <summary>
+            Url of the web service (e.g. "http://filetransfer.test.nordea.com/services/CorporateFileService").
+            Note that test environment is available only when Corporate eGateway service is used.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.CertificateIssuedBy">
+            <summary>
+            The issuer of the X509Certificate2 certificate object to used for signing web service calls. First matching certificate is used.
+            An Exception is thrown if a certificate is not found or it has already expired.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.Environment">
+            <summary>
+            Environment to be used for the web service. Valid values are "TEST" or "PRODUCTION".
+            When testing against production, this has to be "TEST" or the files will be processed as
+            actual production files.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.CustomerId">
+            <summary>
+            Customer Id number. The certificate needs to be assigned to the same customer id (e.g. "1234567890").
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.RequestId">
+            <summary>
+            Request Id is the web service call id number which needs to be unique for at least 3 months.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.FileInput">
+            <summary>
+            File input.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.FileType">
+            <summary>
+            File type to upload (e.g. "pain.001.001.02").
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.FileEncoding">
+            <summary>
+            Destination file encoding, if empty UTF8 will be used.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.TargetId">
+            <summary>
+            The logical folder name where the file(s) of the customer are stored in the bank. A user can have access to several folders.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput.ConnectionTimeOutSeconds">
+            <summary>
+            Timeout in seconds to be used for the connection and operation.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.Url">
+            <summary>
+            Url of the web service (e.g. "http://filetransfer.test.nordea.com/services/CorporateFileService").
+            Note that test environment is available only when Corporate eGateway service is used.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.CertificateIssuedBy">
+            <summary>
+            The issuer of the X509Certificate2 certificate object to used for signing web service calls. First matching certificate is used.
+            An Exception is thrown if a certificate is not found or it has already expired.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.Environment">
+            <summary>
+            Environment to be used for the web service. Valid values are "TEST" or "PRODUCTION".
+            When testing against production, this has to be "TEST" or the files will be processed as
+            actual production files.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.CustomerId">
+            <summary>
+            Customer Id number. The certificate needs to be assigned to the same customer id (e.g. "1234567890").
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.RequestId">
+            <summary>
+            Request Id is the web service call id number which needs to be unique for at least 3 months.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.FileType">
+            <summary>
+            Mandatory FileType is used to filter filelist. Files with specific FileType will be returned (e.g. "pain.001.001.02").
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.TargetId">
+            <summary>
+            The logical folder name where the file(s) of the customer are stored in the bank. A user can have access to several folders.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.StartDate">
+            <summary>
+            Optional parameter StartDate can be used to filter filelist. Files created after this will be returned (inclusive).
+            If this value is null, or unparseable to a DateTime object, no filter is applied.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.EndDate">
+            <summary>
+            Optional parameter EndDate can be used to filter filelist. Files created before this will be returned (inclusive).
+            If this value is null, or unparseable to a DateTime object, no filter is applied.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.Status">
+            <summary>
+            Optional parameter Status can be used to filter filelist.
+            Valid values for files are "NEW" or "DOWNLOADED" (NEW = files not downloaded yet. DLD = files already downloaded).
+            If no parameter is given or if the status is "ALL", all files will be listed.
+            </summary>
+        </member>
+        <member name="P:Frends.Community.PaymentServices.Nordea.Definitions.FileListInput.ConnectionTimeOutSeconds">
+            <summary>
+            Timeout in seconds to be used for the connection and operation.
+            </summary>
+        </member>
+        <member name="M:Frends.Community.PaymentServices.Nordea.WebServices.GetUserInfo(Frends.Community.PaymentServices.Nordea.Definitions.GetUserInfoInput,System.Threading.CancellationToken)">
+            <summary>
+            Fetches user info from the web service. 
+            In case of an error an exception is thrown.
+            </summary>
+            <returns>JToken. Properties: FileReference, TargetId</returns>
+        </member>
+        <member name="M:Frends.Community.PaymentServices.Nordea.WebServices.DownloadFileList(Frends.Community.PaymentServices.Nordea.Definitions.FileListInput,System.Threading.CancellationToken)">
+            <summary>
+            DownloadFileList fetches a filelist from the web service. 
+            Files can be filtered with different parameters: FileType, StartDate, EndDate or Status.
+            In case of an error an exception is thrown.
+            </summary>
+            <returns>JToken array. Properties: FileReference, TargetId, ParentFileReference, FileType, FileTimestamp, Status</returns>
+        </member>
+        <member name="M:Frends.Community.PaymentServices.Nordea.WebServices.UploadFile(Frends.Community.PaymentServices.Nordea.Definitions.UploadFileInput,System.Threading.CancellationToken)">
+            <summary>
+            Uploads a file to the web service. 
+            File type needs to be specified for the file.
+            File content is compressed by GZIP.
+            In case of an error an exception is thrown.
+            </summary>
+            <returns>JToken. Properties: FileReference, TargetId, ParentFileReference, FileType, FileTimestamp, Status</returns>
+        </member>
+        <member name="M:Frends.Community.PaymentServices.Nordea.WebServices.DownloadFile(Frends.Community.PaymentServices.Nordea.Definitions.DownloadFileInput,System.Threading.CancellationToken)">
+            <summary>
+            Downloads a file from web service.
+            In case of an error an exception is thrown.
+            </summary>
+            <returns>Returns the downloaded file content</returns>
+        </member>
+    </members>
+</doc>
