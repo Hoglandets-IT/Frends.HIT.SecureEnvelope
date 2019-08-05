@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Frends.Community.PaymentServices.Nordea</id>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <title>FRENDS Payment Servvices for Nordea bank</title>
     <authors>HiQ Finland</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

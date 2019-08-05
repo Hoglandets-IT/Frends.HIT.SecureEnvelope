@@ -4,6 +4,8 @@ using System.Security.Cryptography.X509Certificates;
 using Environment = Frends.Community.PaymentServices.Nordea.Helpers.Enums.Environment;
 using Status = Frends.Community.PaymentServices.Nordea.Helpers.Enums.Status;
 
+#pragma warning disable 1591
+
 namespace Frends.Community.PaymentServices.Nordea.Helpers
 {
     class Validators

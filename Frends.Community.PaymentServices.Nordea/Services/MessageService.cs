@@ -33,14 +33,10 @@ namespace Frends.Community.PaymentServices.Nordea.Services
                                                                     { "wsse", WsseNs }, 
                                                                 };
 
-        private static readonly XNamespace OpcNs = "http://mlp.op.fi/OPCertificateService"; // Liittyy vain OP:n sertifikaatin hakuun
-        private static readonly XNamespace OpDataNs = "http://op.fi/mlp/xmldata/"; // Liittyy vain OP:n sertifikaatin hakuun
 
         private static readonly Dictionary<string, XNamespace> FewNamespaces = new Dictionary<string, XNamespace>
                                                                 {
-                                                                    { "soapenv", EnvNs }, 
-                                                                    { "opc", OpcNs }, // Liittyy vain OP:n sertifikaatin hakuun
-                                                                    { "dat", OpDataNs } // Ei käytetä OP:nkaan esimerkkisanomissa
+                                                                    { "soapenv", EnvNs }
                                                                 };
 
         public static string GetDownloadFileListMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Status status, Environment environment, int requestId)

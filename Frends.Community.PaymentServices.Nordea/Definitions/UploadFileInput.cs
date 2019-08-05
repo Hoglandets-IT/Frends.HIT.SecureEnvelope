@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
+#pragma warning disable 1591
+
 namespace Frends.Community.PaymentServices.Nordea.Definitions
 {
     public class UploadFileInput
@@ -15,7 +17,7 @@ namespace Frends.Community.PaymentServices.Nordea.Definitions
         public string Url { get; set; }
 
         /// <summary>
-        /// The issuer of the X509Certificate2 certificate object to used for signing web service calls. First matching certificate is used.
+        /// The issuer of the Base-64 encoded X.509 certificate to be used for signing web service calls. First matching certificate is used.
         /// An Exception is thrown if a certificate is not found or it has already expired.
         /// </summary>
         [Required]

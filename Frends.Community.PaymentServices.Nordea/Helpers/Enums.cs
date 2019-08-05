@@ -1,4 +1,7 @@
 ﻿namespace Frends.Community.PaymentServices.Nordea.Helpers
+
+#pragma warning disable 1591
+
 {
     public class Enums
     {

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#pragma warning disable 1591
+
 namespace Frends.Community.PaymentServices.Nordea.Definitions
 {
     public class WebServiceSettings

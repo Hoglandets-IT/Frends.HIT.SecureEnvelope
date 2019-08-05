@@ -28,7 +28,7 @@ Fetches information on authorized user file types and service IDs.
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
 | Url | string | URL of the bank's web service | http://filetransfer.test.nordea.com/services/CorporateFileService |
-| Certificate Issued By | string | The issuer of the certificate that should be used for signing the messages |  |
+| Certificate Issued By | string | The issuer of the Base-64 encoded X.509 certificate that should be used for signing the messages |  |
 | Environment | string | Target environment (TEST or PRODUCTION) | TEST |
 | Customer Id | string | Unique number identifying the bank's customer | 0000000000 |
 | Target Id | string | The logical folder name where the file(s) of the customer are stored in the bank. |  |
@@ -54,14 +54,14 @@ Downloads a list of files available for download from Nordea.
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
 | Url | string | URL of the bank's web service | http://filetransfer.test.nordea.com/services/CorporateFileService |
-| Certificate Issued By | string | The issuer of the certificate that should be used for signing the messages |  |
+| Certificate Issued By | string | The issuer of the Base-64 encoded X.509 certificate that should be used for signing the messages |  |
 | Environment | string | Target environment (TEST or PRODUCTION) | TEST |
 | Customer Id | string | Unique number identifying the bank's customer | 0000000000 |
 | Request Id | int | A unique integer value identifying the request. This value must be unique for three months. | 1 |
 | File Type | string | Optional parameter for filtering filelists | pain.001.001.02 |
 | Target Id | string | The logical folder name where the file(s) of the customer are stored in the bank. |  |
-| Start Date| string | Optional parameter for filtering filelists. Files created after will be returned. If this value is null, or unparseable to a DateTime object, no filter is applied. | 2018-05-25 |
-| End Date | string |  Optional parameter for filtering filelists. Files created before will be returned. If this value is null, or unparseable to a DateTime object, no filter is applied.| 2018-05-28 |
+| Start Date| string | Format: YYYY-MM-DD. Optional parameter for filtering filelists. Files created after will be returned. If this value is null, or unparseable to a DateTime object, no filter is applied. | 2018-05-25 |
+| End Date | string |  Format: YYYY-MM-DD. Optional parameter for filtering filelists. Files created before will be returned. If this value is null, or unparseable to a DateTime object, no filter is applied.| 2018-05-28 |
 | Status | string |  Optional parameter for filtering filelist. Valid values are "NEW", "DOWNLOADED" and "ALL". NEW = files not downloaded yet, DOWNLOADED = files already downloaded and ALL = fetch all available files. If no parameter is given or if the status is "ALL", all files will be listed. | NEW |
 | Connection timeout seconds | int | Timeout in seconds to be used for the connection and operation. | 30 |
 
@@ -81,7 +81,7 @@ Uploads a file to Nordea
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
 | Url | string | URL of the bank's web service | http://filetransfer.test.nordea.com/services/CorporateFileService |
-| Certificate Issued By | string | The issuer of the certificate that should be used for signing the messages |  |
+| Certificate Issued By | string | The issuer of the Base-64 encoded X.509 certificate that should be used for signing the messages |  |
 | Environment | string | Target environment (TEST or PRODUCTION) | TEST |
 | Customer Id | string | Unique number identifying the bank's customer | 0000000000 |
 | Request Id | int | A unique integer value identifying the request. This value must be unique for three months. | 1 |
@@ -107,7 +107,7 @@ Downloads a file or files from Nordea. The webservice supports requests for a si
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
 | Url | string | URL of the bank's web service | http://filetransfer.test.nordea.com/services/CorporateFileService |
-| Certificate Issued By | string | The issuer of the certificate that should be used for signing the messages |  |
+| Certificate Issued By | string | The issuer of the Base-64 encoded X.509 certificate that should be used for signing the messages |  |
 | Environment | string | Target environment (TEST or PRODUCTION) | TEST |
 | Customer Id | string | Unique number identifying the bank's customer | 0000000000 |
 | Request Id | int | A unique integer value identifying the request. This value must be unique for three months. | 1 |
@@ -115,7 +115,7 @@ Downloads a file or files from Nordea. The webservice supports requests for a si
 | File Encoding | string | File encoding for the input file | utf-8 |
 | File Type | bool | Optional parameter for filtering downloaded files | pain.001.001.02 |
 | Target Id | string | The logical folder name where the file(s) of the customer are stored in the bank. |  |
-| Status | string |  Optional parameter for filtering filelist. Valid values for files sent to the bank by the customer are "WFP" or "FWD" (WFP = waiting for processing. FWD = forwarded). Valid values for files sent to the bank by the customer are "NEW" or "DLD" (NEW = files not downloaded yet. DLD = files already downloaded). If no parameter is given or if the status is "ALL", all files will be listed. | NEW |
+| Status | string |   Optional parameter for filtering filelist. Valid values are "NEW", "DOWNLOADED" and "ALL". NEW = files not downloaded yet, DOWNLOADED = files already downloaded and ALL = fetch all available files. If no parameter is given or if the status is "ALL", all files will be listed. | NEW |
 | Connection timeout seconds | int | Timeout in seconds to be used for the connection and operation. | 30 |
 
 
@@ -183,3 +183,4 @@ NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 | 1.0.6 | Fix to response signature validation |
 | 1.0.7 | Updated UploadFile result format |
 | 1.0.8 | Bug fix to UploadFile result format |
+| 1.0.9 | A number of small fixes to documentation and code |

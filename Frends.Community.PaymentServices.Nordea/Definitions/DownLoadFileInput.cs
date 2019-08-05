@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
+#pragma warning disable 1591
+
 namespace Frends.Community.PaymentServices.Nordea.Definitions
 {
     public class DownloadFileInput
@@ -15,7 +17,7 @@ namespace Frends.Community.PaymentServices.Nordea.Definitions
         public string Url { get; set; }
 
         /// <summary>
-        /// The issuer of the X509Certificate2 certificate object to used for signing web service calls. First matching certificate is used.
+        /// The issuer of the Base-64 encoded X.509 to be used for signing web service calls. First matching certificate is used.
         /// An Exception is thrown if a certificate is not found or it has already expired.
         /// </summary>
         [Required]
@@ -81,7 +83,7 @@ namespace Frends.Community.PaymentServices.Nordea.Definitions
 
         /// <summary>
         /// Optional parameter Status can be used to filter filelist.
-        /// Valid values for files are "NEW" or "DOWNLOADED" (NEW = files not downloaded yet. DLD = files already downloaded).
+        /// Valid values for are "NEW", "DOWNLOADED" and "ALL" (NEW = files not downloaded yet, DOWNLOADED = files already downloaded, ALL = fetch all available files).
         /// If no parameter is given or if the status is "ALL", all files will be listed.
         /// </summary>
         [DisplayFormat(DataFormatString = "Text")]

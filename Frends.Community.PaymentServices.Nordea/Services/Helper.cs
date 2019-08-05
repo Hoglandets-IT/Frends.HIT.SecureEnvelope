@@ -37,6 +37,12 @@ namespace Frends.Community.PaymentServices.Nordea.Services
 
             var signatureNode = GetSignatureNode(soapRequestDocument, certificate, references, keyInfo);
             var securityNode = soapRequestDocument.SelectSingleNode("/soapenv:Envelope/soapenv:Header/wsse:Security", GetNamespaceManagerFromNamespaces(soapRequestDocument, namespaces));
+
+            if (securityNode == null)
+            {
+                throw new Exception($"Security node not found!");
+            }
+
             var nodeToImport = securityNode.OwnerDocument.ImportNode(signatureNode, true);
             securityNode.AppendChild(nodeToImport);
 
@@ -230,7 +236,7 @@ namespace Frends.Community.PaymentServices.Nordea.Services
         }
 
         //Builds signature XML element
-        private static XmlElement GetSignatureNode(XmlDocument document, X509Certificate2 certificate, IEnumerable<string> referenceIds, KeyInfo keyInfo)
+        private static XmlElement GetSignatureNode(XmlDocument document, X509Certificate2 certificate, IList<string> referenceIds, KeyInfo keyInfo)
         {
             var signedXmlA = new SignedXmlWithId(document) { SigningKey = certificate.PrivateKey };
 

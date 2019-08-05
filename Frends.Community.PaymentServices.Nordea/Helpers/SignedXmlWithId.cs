@@ -1,6 +1,8 @@
 ﻿using System.Security.Cryptography.Xml;
 using System.Xml;
 
+#pragma warning disable 1591
+
 namespace Frends.Community.PaymentServices.Nordea.Helpers
 {
     public class SignedXmlWithId : SignedXml
