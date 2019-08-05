@@ -38,8 +38,6 @@ Fetches information on authorized user file types and service IDs.
 
 ### Result
 
-Note: This task has not been tested yet, so the response is returned as a generic JToken with an unknown structure.
-
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
 |                      | JToken         |  |  |
@@ -49,7 +47,6 @@ Note: This task has not been tested yet, so the response is returned as a generi
 Downloads a list of files available for download from Nordea.
 
 ### Task Parameters
-
 
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
@@ -77,7 +74,6 @@ Uploads a file to Nordea
 
 ### Task parameters
 
-
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
 | Url | string | URL of the bank's web service | http://filetransfer.test.nordea.com/services/CorporateFileService |
@@ -103,7 +99,6 @@ Downloads a file or files from Nordea. The webservice supports requests for a si
 
 ### Task Parameters
 
-
 | Property             | Type                 | Description                          | Example |
 | ---------------------| ---------------------| ------------------------------------ | ----- |
 | Url | string | URL of the bank's web service | http://filetransfer.test.nordea.com/services/CorporateFileService |
@@ -117,7 +112,6 @@ Downloads a file or files from Nordea. The webservice supports requests for a si
 | Target Id | string | The logical folder name where the file(s) of the customer are stored in the bank. |  |
 | Status | string |   Optional parameter for filtering filelist. Valid values are "NEW", "DOWNLOADED" and "ALL". NEW = files not downloaded yet, DOWNLOADED = files already downloaded and ALL = fetch all available files. If no parameter is given or if the status is "ALL", all files will be listed. | NEW |
 | Connection timeout seconds | int | Timeout in seconds to be used for the connection and operation. | 30 |
-
 
 ### Result
 
@@ -152,7 +146,8 @@ Create a nuget package
 Testing and using the tasks requires a working connection to Nordea's Web Service. In order to connect to Nordea's Web Service the following things are needed:
 
 - An agreement with Nordea. Without an agreement there is no Customer Id, no Target Id and no way to obtain the needed certificate.
-- A (production) certificate. The web service does not have a separate test environment, so the same certificate is used for tests and production use. The easiest way to obtain the certificate is probably using Nordea's security client program. Full instructions can be found from Nordea's web page. 
+- A client specific (production) certificate. The web service does not have a separate test environment, so the same certificate is used for tests and production use. The easiest way to obtain the certificate is probably using Nordea's security client program. Full instructions can be found from Nordea's web page. The certificate should be installed under Personal/Certificates in the FRENDS agent's certificate store.
+- Nordea root cerficate. 
 
 When the certificate is obtained and installed, and the needed ID values are known, the connection to Nordea's web service can be tested with either task GetUserInfo or DownloadFileList, as these only fetch information and do not modify anything at Nordea's end. Assuming there is some material to test with, DownLoadFile and UploadFile can be tested as soon as the connection to the web service works.
 

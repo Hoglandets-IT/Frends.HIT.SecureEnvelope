@@ -13,7 +13,7 @@ namespace Frends.Community.PaymentServices.Nordea.Definitions
         /// </summary>
         [Required]
         [DisplayFormat(DataFormatString = "Text")]
-        [DefaultValue("http://filetransfer.test.nordea.com/services/CorporateFileService")]
+        [DefaultValue(@"http://filetransfer.test.nordea.com/services/CorporateFileService")]
         public string Url { get; set; }
 
         /// <summary>
