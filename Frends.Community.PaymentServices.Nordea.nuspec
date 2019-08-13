@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Frends.Community.PaymentServices.Nordea</id>
+    <version>1.1.0</version>
+    <title>FRENDS Payment Servvices for Nordea bank</title>
+    <authors>HiQ Finland</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FRENDS Payment Services for Nordea bank</description>
+    <summary />
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="6.0.0"/>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="" />
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+      <frameworkAssembly assemblyName="System.IO" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Collections.Generic" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Net." targetFramework="" />
+      <frameworkAssembly assemblyName="System.Security" targetFramework="" />
+      <frameworkAssembly assemblyName="System.ComponentModel" targetFramework="" />
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="Frends.Community.PaymentServices.Nordea\bin\release\Frends.Community.PaymentServices.Nordea.dll" target="lib\net452\Frends.Community.PaymentServices.Nordea.dll" />
+    <file src="Frends.Community.PaymentServices.Nordea\bin\release\Frends.Community.PaymentServices.Nordea.xml" target="lib\net452\Frends.Community.PaymentServices.Nordea.xml" />
+    <file src="FrendsTaskMetadata.json" target="FrendsTaskMetadata.json"/>
+  </files>
+</package>
