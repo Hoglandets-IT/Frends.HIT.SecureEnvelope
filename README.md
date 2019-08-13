@@ -155,6 +155,8 @@ When testing - and especially when testing UploadFile - care should be taken tha
 
 Note: The url http://filetransfer.test.nordea.com/services/CorporateFileService is only available when Corporate eGateway is used. It is used as the tasks' default value for the url as a small safeguard agains sending requests to production environment unintentionally.
 
+These tasks utilize Nordea's implementation of [Web Services channel](http://www.finanssiala.fi/maksujenvalitys/dokumentit/WebServices_Messages_20081022_105.pdf). Details of Nordea's implementation can be found [here](https://www.nordea.fi/yritysasiakkaat/palvelumme/verkko-mobiilipalvelut/palvelukuvaukset.html#tab=Palvelukuvaukset-S-O). These documents are also backed up in Documents folder.
+
 # Contributing
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
@@ -178,4 +180,4 @@ NOTE: Be sure to merge the latest from "upstream" before making a pull request!
 | 1.0.6 | Fix to response signature validation |
 | 1.0.7 | Updated UploadFile result format |
 | 1.0.8 | Bug fix to UploadFile result format |
-| 1.0.9 | A number of small fixes to documentation and code |
+| 1.1.0 | A number of small fixes to documentation and code |
