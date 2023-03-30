@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using Environment = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Environment;
+using Status = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Status;
+
+namespace Frends.Community.FinancialServices.Nordea.Helpers
+{
+    public class Validators
+    {
+        public static void ValidateParameters(string url, string certificate, string environment, params KeyValuePair<string, string>[] stringParameters)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new ArgumentException("Url cannot be empty", nameof(url));
+            }
+            else
+            {
+                try
+                {
+                    var uri = new Uri(url);
+                }
+                catch (UriFormatException e)
+                {
+                    throw new ArgumentException("Url is not valid", nameof(url), e);
+                }
+            }
+
+            if (String.IsNullOrEmpty(certificate))
+            {
+                throw new ArgumentException("Certificate is missing the private key for signing", nameof(certificate));
+            }
+
+            if (!Enum.TryParse(environment, out Environment env))
+            {
+                throw new ArgumentException($"Environment value is not valid. Valid values are: '{Environment.PRODUCTION}' / '{Environment.TEST}'", nameof(environment));
+            }
+
+            foreach (var stringParameter in stringParameters)
+            {
+                ValidateStringParameter(stringParameter);
+            }
+        }
+
+        public static void ValidateStringParameter(KeyValuePair<string, string> parameter)
+        {
+            if (string.IsNullOrEmpty(parameter.Value))
+            {
+                throw new ArgumentException("Value cannot be empty", parameter.Key);
+            }
+        }
+
+        public static void ValidateStatusParameter(string status)
+        {
+            if (!Enum.TryParse(status, out Status stat))
+            {
+                throw new ArgumentException($"Status value is not valid. Valid values are: '{Status.NEW}' / '{Status.DOWNLOADED}' / '{Status.ALL}'", nameof(status));
+            }
+        }
+    }
+}
