@@ -28,14 +28,13 @@ namespace Frends.Community.FinancialServices.Nordea
             string environment = input.Environment;
             string url = input.Url;
             string certificate = input.Certificate;
-            string privateKey = input.PrivateKey;
 
             var stringParameters = new[]
             {
                 new KeyValuePair<string, string>("customerId", customerId),
             };
 
-            X509Certificate2 cert = CertificateService.GetX509Certificate(certificate, privateKey);
+            X509Certificate2 cert = CertificateService.GetX509Certificate(certificate);
 
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 
@@ -62,7 +61,6 @@ namespace Frends.Community.FinancialServices.Nordea
             string status = input.Status;
             string url = input.Url;
             string certificate = input.Certificate;
-            string privateKey = input.PrivateKey;
 
             var stringParameters = new[]
             {
@@ -70,7 +68,7 @@ namespace Frends.Community.FinancialServices.Nordea
             };
 
             // Fetches certificate based on issuer
-            X509Certificate2 cert = CertificateService.GetX509Certificate(certificate, privateKey);
+            X509Certificate2 cert = CertificateService.GetX509Certificate(certificate);
 
             // Validate parameters
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
@@ -108,7 +106,6 @@ namespace Frends.Community.FinancialServices.Nordea
             string fileType = input.FileType;
             string url = input.Url;
             string certificate = input.Certificate;
-            string privateKey = input.PrivateKey;
 
             var stringParameters = new[]
             {
@@ -117,7 +114,7 @@ namespace Frends.Community.FinancialServices.Nordea
                 new KeyValuePair<string, string>("fileType", fileType)
             };
 
-            X509Certificate2 cert = CertificateService.GetX509Certificate(certificate, privateKey);
+            X509Certificate2 cert = CertificateService.GetX509Certificate(certificate);
 
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 
@@ -147,7 +144,6 @@ namespace Frends.Community.FinancialServices.Nordea
             string status = input.Status;
             string url = input.Url;
             string certificate = input.Certificate;
-            string privateKey = input.PrivateKey;
 
             var stringParameters = new[]
             {
@@ -160,7 +156,7 @@ namespace Frends.Community.FinancialServices.Nordea
                 Validators.ValidateStatusParameter(status);
             }
 
-            X509Certificate2 cert = CertificateService.GetX509Certificate(certificate, privateKey);
+            X509Certificate2 cert = CertificateService.GetX509Certificate(certificate);
 
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 

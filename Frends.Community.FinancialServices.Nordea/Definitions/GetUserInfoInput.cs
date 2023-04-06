@@ -29,15 +29,6 @@ namespace Frends.Community.FinancialServices.Nordea.Definitions
         public string Certificate { get; set; }
 
         /// <summary>
-        /// The cert in string format.
-        /// An Exception is thrown if a Private key is not found or it has already expired.
-        /// </summary>
-        [Required]
-        [DisplayFormat(DataFormatString = "Text")]
-        [DefaultValue("")]
-        public string PrivateKey { get; set; }
-
-        /// <summary>
         /// Environment to be used for the web service. Valid values are "TEST" or "PRODUCTION".
         /// When testing against production, this has to be "TEST" or the files will be processed as
         /// actual production files.

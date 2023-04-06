@@ -29,15 +29,6 @@ namespace Frends.Community.FinancialServices.Nordea.Definitions
         public string Certificate { get; set; }
 
         /// <summary>
-        /// The cert in string format.
-        /// An Exception is thrown if a Private key is not found or it has already expired.
-        /// </summary>
-        [Required]
-        [DisplayFormat(DataFormatString = "Text")]
-        [DefaultValue("")]
-        public string PrivateKey { get; set; }
-
-        /// <summary>
         /// The issuer of the Base-64 encoded X.509 to be used for signing web service calls. First matching certificate is used.
         /// An Exception is thrown if a certificate is not found or it has already expired.
         /// </summary>

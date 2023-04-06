@@ -17,9 +17,9 @@ namespace TestRunner
             userinfor.CustomerId = "162355330";
             userinfor.Environment = "TEST";
             userinfor.Url = @"https://filetransfer.nordea.com:2020/services/CorporateFileService";
-            userinfor.Certificate = null;
-
-            userinfor.PrivateKey = null;
+            
+            //Add the cert here
+            userinfor.Certificate = string.Empty;
 
             Console.WriteLine("Start program");
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();

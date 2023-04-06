@@ -13,9 +13,26 @@ namespace Frends.Community.FinancialServices.Nordea.Services
 {
     public class CertificateService
     {
-        public static X509Certificate2 GetX509Certificate(string certificate, string privateKey)
+        private const string CertCheck = "-----BEGIN CERTIFICATE-----";
+        public static X509Certificate2 GetX509Certificate(string certificate)
         {
-            return X509Certificate2.CreateFromPem(certificate, privateKey);
+            if (string.IsNullOrEmpty(certificate))
+            {
+                throw new Exception(message: "Certificate is empty or null");
+            }
+            var certAndKey = GetCertAndKey(certificate);
+            return X509Certificate2.CreateFromPem(certAndKey["certPem"], certAndKey["keyPem"]);
+        }
+
+        private static IDictionary<string, string> GetCertAndKey(string cert)
+        {
+            var list = cert.Split(",");
+            IDictionary<string, string> certAndKey = new Dictionary<string, string>();
+            foreach (var str in list)
+            {
+                certAndKey.Add(str.StartsWith(CertCheck) ? "certPem" : "keyPem", str);
+            }
+            return certAndKey;
         }
     }
 }
