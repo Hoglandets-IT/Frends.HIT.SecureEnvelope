@@ -40,7 +40,7 @@ namespace Frends.Community.FinancialServices.Nordea
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 
             var env = (Environment)Enum.Parse(typeof(Environment), environment);
-            input.ConnectionTimeOutSeconds = 30;
+            
 
             var message = MessageService.GetUserInfoMessage(cert, customerId, input.TargetId, env, input.RequestId);
             var result = await WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
@@ -57,7 +57,7 @@ namespace Frends.Community.FinancialServices.Nordea
         /// In case of an error an exception is thrown.
         /// </summary>
         /// <returns>JToken array. Properties: FileReference, TargetId, ParentFileReference, FileType, FileTimestamp, Status</returns>
-        public static JToken DownloadFileList(FileListInput input, CancellationToken cancellationToken)
+        public static async Task<JToken> DownloadFileList(FileListInput input, CancellationToken cancellationToken)
         {
             string customerId = input.CustomerId;
             string environment = input.Environment;
@@ -87,8 +87,8 @@ namespace Frends.Community.FinancialServices.Nordea
             var endDateParam = input.EndDate.ResolveDate();
 
             var message = MessageService.GetDownloadFileListMessage(cert, customerId, input.FileType, input.TargetId, startDateParam, endDateParam, fileStatus, env, input.RequestId);
-            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
-            string resultXml = result.Result.Body;
+            var result = await WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
+            string resultXml = result.Body;
             var applicationResponse = CheckResultForErrorsAndReturnApplicationResult(resultXml);
 
             return Helper.GetFileListResultFromResponseXml(applicationResponse);

@@ -11,23 +11,11 @@ namespace TestRunner
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void  Main(string[] args)
         {
-            GetUserInfoInput userinfor = new GetUserInfoInput();
-            userinfor.CustomerId = "0000000000";
-            userinfor.Environment = "TEST";
-            userinfor.Url = @"https://filetransfer.nordea.com:443/services/CorporateFileService";
-            userinfor.RequestId = 123456789;
-            
-            //Add the cert here cert,private key
-            userinfor.Certificate = string.Empty;
-
-            Console.WriteLine("Start program");
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken token = cancellationTokenSource.Token;
-            var resp = await WebServices.GetUserInfo(userinfor, token);
-            //Console.WriteLine(resp.Result.);
-            Console.WriteLine(resp.ToString());
+            var response = TestEnvironment.GetUserInfo();
+            var response2 =  TestEnvironment.DownloadFileList();
+            Console.WriteLine(response2.Result.ToString());
         }
     }
 }
