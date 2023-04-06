@@ -10,6 +10,7 @@ using Frends.Community.FinancialServices.Nordea.Services;
 using Environment = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Environment;
 using Status = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Status;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 #pragma warning disable 1591
 
@@ -22,7 +23,7 @@ namespace Frends.Community.FinancialServices.Nordea
         /// In case of an error an exception is thrown.
         /// </summary>
         /// <returns>JToken. Properties: FileReference, TargetId</returns>
-        public static JToken GetUserInfo(GetUserInfoInput input, CancellationToken cancellationToken)
+        public static async Task<JToken> GetUserInfo(GetUserInfoInput input, CancellationToken cancellationToken)
         {
             string customerId = input.CustomerId;
             string environment = input.Environment;
@@ -39,10 +40,12 @@ namespace Frends.Community.FinancialServices.Nordea
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 
             var env = (Environment)Enum.Parse(typeof(Environment), environment);
+            input.ConnectionTimeOutSeconds = 30;
 
             var message = MessageService.GetUserInfoMessage(cert, customerId, input.TargetId, env, input.RequestId);
-            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
-            string resultXml = result.Result.Body;
+            var result = await WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
+            Debug.WriteLine(result.StatusCode.ToString());
+            string resultXml = result.Body;
             var applicationResponse = CheckResultForErrorsAndReturnApplicationResult(resultXml);
 
             return Helper.GetUserInfoFromResponseXml(applicationResponse);
