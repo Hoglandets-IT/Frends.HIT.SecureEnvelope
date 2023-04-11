@@ -6,7 +6,7 @@ namespace TestRunner;
 
 public static class TestEnvironment
 {
-    private const string CustomerId = " 11111111";
+    private const string CustomerId = "11111111";
     private const string Environment = "PRODUCTION";
     private const string Url = @"https://filetransfer.nordea.com:443/services/CorporateFileService";
     private const int RequestId = 1;

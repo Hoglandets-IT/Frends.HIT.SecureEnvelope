@@ -1,0 +1,17 @@
+﻿{
+  "Tasks": [
+    {
+      "TaskMethod": "Frends.Community.FinancialServices.Nordea.WebServices.GetUserInfo"
+    },
+    {
+      "TaskMethod": "Frends.Community.FinancialServices.Nordea.WebServices.DownloadFileList"
+    },
+    {
+      "TaskMethod": "Frends.Community.FinancialServices.Nordea.WebServices.UploadFile"
+    },
+    {
+      "TaskMethod": "Frends.Community.FinancialServices.Nordea.WebServices.DownloadFile"
+    }
+  ]
+
+}
