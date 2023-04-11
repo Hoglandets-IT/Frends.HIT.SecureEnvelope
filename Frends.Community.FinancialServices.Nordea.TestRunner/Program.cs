@@ -13,9 +13,10 @@ namespace TestRunner
     {
         static void  Main(string[] args)
         {
-            var response = TestEnvironment.GetUserInfo();
-            var response2 =  TestEnvironment.DownloadFileList();
-            Console.WriteLine(response2.Result.ToString());
+           // var response = TestEnvironment.GetUserInfo();
+           // var response2 =  TestEnvironment.DownloadFileList();
+            var response3 = TestEnvironment.UploadFile();
+            Console.WriteLine(response3.Result.ToString());
         }
     }
 }

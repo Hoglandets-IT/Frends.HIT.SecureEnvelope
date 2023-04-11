@@ -101,7 +101,7 @@ namespace Frends.Community.FinancialServices.Nordea
         /// In case of an error an exception is thrown.
         /// </summary>
         /// <returns>JToken. Properties: CustomerId, Timestamp, ResponseCode, Encrypted, Compressed, AmountTotal, TransactionCount</returns>
-        public static JToken UploadFile(UploadFileInput input, CancellationToken cancellationToken)
+        public static async Task<JToken> UploadFile(UploadFileInput input, CancellationToken cancellationToken)
         {
             string customerId = input.CustomerId;
             string environment = input.Environment;
@@ -126,8 +126,8 @@ namespace Frends.Community.FinancialServices.Nordea
             var encoding = string.IsNullOrEmpty(input.FileEncoding) ? Encoding.UTF8 : Encoding.GetEncoding(input.FileEncoding);
 
             var message = MessageService.GetUploadFileMessage(cert, customerId, env, input.RequestId, fileInput, fileType, input.TargetId, encoding);
-            var result = WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
-            string resultXml = result.Result.Body;
+            var result = await WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
+            string resultXml = result.Body;
             var applicationResponse = CheckResultForErrorsAndReturnApplicationResult(resultXml);
 
             return Helper.GetFileInfoFromResponseXml(applicationResponse);

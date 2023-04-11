@@ -16,6 +16,7 @@ public static class TestEnvironment
     private const string TargetId = "11111111A1";
     private const string StartDate = "2018-05-25";
     private const string EndDate = "2023-05-25";
+    private const string FileEncoding = "utf-8";
 
     public static async Task<JToken> GetUserInfo()
     {
@@ -33,6 +34,7 @@ public static class TestEnvironment
         var cancellationTokenSource = new CancellationTokenSource();
         var token = cancellationTokenSource.Token;
         var resp = await WebServices.GetUserInfo(userInfo, token);
+        
         return resp;
     }
 
@@ -57,6 +59,29 @@ public static class TestEnvironment
         var cancellationTokenSource = new CancellationTokenSource();
         var token = cancellationTokenSource.Token;
         var resp = await WebServices.DownloadFileList(fileListInput, token);
+        
         return resp;
+    }
+
+    public static async Task<JToken> UploadFile()
+    {
+        var uploadFileInput = new UploadFileInput()
+        {
+            CustomerId = CustomerId,
+            Environment = Environment,
+            Url = Url,
+            FileType = FileType,
+            FileEncoding = FileEncoding,
+            FileInput = "Test",
+            Certificate = System.Environment.GetEnvironmentVariable("CERTIFICATE") ?? string.Empty
+        };
+        
+        Console.WriteLine("Start program UploadFile");
+        var cancellationTokenSource = new CancellationTokenSource();
+        var token = cancellationTokenSource.Token;
+        var resp = await WebServices.UploadFile(uploadFileInput, token);
+        
+        return resp;
+        
     }
 }
