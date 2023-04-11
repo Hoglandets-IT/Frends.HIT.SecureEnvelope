@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 #pragma warning disable 1591
 
-namespace Frends.Community.FinancialServices.Nordea.Services
+namespace Frends.HIT.FinancialServices.Nordea.Services
 {
     public class CertificateService
     {

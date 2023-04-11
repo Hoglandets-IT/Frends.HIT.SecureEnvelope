@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frends.Community.FinancialServices.Nordea", "Frends.Community.FinancialServices.Nordea\Frends.Community.FinancialServices.Nordea.csproj", "{B2691E12-4125-4F04-AEB9-245DCE01F027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frends.HIT.FinancialServices.Nordea", "Frends.HIT.FinancialServices.Nordea\Frends.HIT.FinancialServices.Nordea.csproj", "{B2691E12-4125-4F04-AEB9-245DCE01F027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frends.Community.FinancialServices.Nordea.TestRunner", "Frends.Community.FinancialServices.Nordea.TestRunner\Frends.Community.FinancialServices.Nordea.TestRunner.csproj", "{CFD96F2B-8033-4769-88A3-43B40A19C085}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frends.HIT.FinancialServices.Nordea.TestRunner", "Frends.HIT.FinancialServices.Nordea.TestRunner\Frends.HIT.FinancialServices.Nordea.TestRunner.csproj", "{CFD96F2B-8033-4769-88A3-43B40A19C085}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

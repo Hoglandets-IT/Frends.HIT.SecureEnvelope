@@ -11,14 +11,14 @@ using System.Xml;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Frends.Community.FinancialServices.Nordea.Helpers;
-using Environment = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Environment;
-using Status = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Status;
+using Environment = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Environment;
+using Status = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Status;
 using System.Diagnostics;
+using Frends.HIT.FinancialServices.Nordea.Helpers;
 
 #pragma warning disable 1591
 
-namespace Frends.Community.FinancialServices.Nordea.Services
+namespace Frends.HIT.FinancialServices.Nordea.Services
 {
     internal static class Helper
     {
@@ -62,7 +62,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // Creates application request for fetching user info
-        private static XElement GetUserInfoApplicationRequest(string customerId, string targetId, DateTime timestamp, Environment environment, string softwareId, Dictionary<string, XNamespace> namespaces)
+        private static XElement GetUserInfoApplicationRequest(string customerId, string targetId, DateTime timestamp, Enums.Environment environment, string softwareId, Dictionary<string, XNamespace> namespaces)
         {
             return new XElement(namespaces["bxd"] + "ApplicationRequest",
                 new XElement(namespaces["bxd"] + "CustomerId", customerId),
@@ -74,7 +74,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // Creates application request for uploading a file
-        private static XElement GetUploadFileApplicationRequest(string customerId, DateTime timestamp, Environment environment, string softwareId, Dictionary<string, XNamespace> namespaces, string fileInput, string fileType, Encoding fileEncoding, string targetId)
+        private static XElement GetUploadFileApplicationRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, Dictionary<string, XNamespace> namespaces, string fileInput, string fileType, Encoding fileEncoding, string targetId)
         {
             var compressedFile = GzipAndBase64Encode(fileInput, fileEncoding);
 
@@ -92,7 +92,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // Creates application request for getting a file
-        private static XElement GetFileApplicationRequest(string customerId, DateTime timestamp, Environment environment, string softwareId, string fileReference, string fileType, string targetId, Status status, Dictionary<string, XNamespace> namespaces)
+        private static XElement GetFileApplicationRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, string fileReference, string fileType, string targetId, Enums.Status status, Dictionary<string, XNamespace> namespaces)
         {
             return new XElement(namespaces["bxd"] + "ApplicationRequest",
                 new XElement(namespaces["bxd"] + "CustomerId", customerId),
@@ -109,7 +109,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // Creates application request for getting a list of available files
-        private static XElement GetFileListApplicationRequest(string customerId, DateTime timestamp, Environment environment, string softwareId, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Status status, Dictionary<string, XNamespace> namespaces)
+        private static XElement GetFileListApplicationRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Enums.Status status, Dictionary<string, XNamespace> namespaces)
         {
             var properties = new List<XElement>
             {
@@ -188,7 +188,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // Builds SOAP request body for getting a list of available files 
-        public static XElement GetDownloadFileListRequest(string customerId, DateTime timestamp, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Status status, Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces)
+        public static XElement GetDownloadFileListRequest(string customerId, DateTime timestamp, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Enums.Status status, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces)
         {
             var applicationRequest = GetFileListApplicationRequest(customerId, timestamp, environment, softwareId, fileType, targetId, startDate, endDate, status, namespaces);
             var requestBase64 = SignApplicationRequestAndReturnAsBase64(applicationRequest, certificate);
@@ -200,7 +200,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // Builds SOAP request body for downloading a file
-        public static XElement GetDownloadFileRequest(string customerId, DateTime timestamp, Environment environment, string softwareId, int requestId, string fileReference, string fileType, string targetId, X509Certificate2 certificate, Status status, Dictionary<string, XNamespace> namespaces)
+        public static XElement GetDownloadFileRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, string fileReference, string fileType, string targetId, X509Certificate2 certificate, Enums.Status status, Dictionary<string, XNamespace> namespaces)
         {
             var applicationRequest = GetFileApplicationRequest(customerId, timestamp, environment, softwareId, fileReference, fileType, targetId, status, namespaces);
             var requestBase64 = SignApplicationRequestAndReturnAsBase64(applicationRequest, certificate);
@@ -212,7 +212,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // Builds SOAP request body for getting user info
-        public static XElement GetUserInfoRequest(string customerId, string targetId, DateTime timestamp, Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces)
+        public static XElement GetUserInfoRequest(string customerId, string targetId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces)
         {
             var applicationRequest = GetUserInfoApplicationRequest(customerId, targetId, timestamp, environment, softwareId, namespaces);
             var requestBase64 = SignApplicationRequestAndReturnAsBase64(applicationRequest, certificate);
@@ -224,7 +224,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // Builds SOAP request body for uploading a file
-        public static XElement GetUploadFileRequest(string customerId, DateTime timestamp, Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces, string fileInput, string fileType, Encoding fileEncoding, string targetId)
+        public static XElement GetUploadFileRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces, string fileInput, string fileType, Encoding fileEncoding, string targetId)
         {
             var applicationRequest = GetUploadFileApplicationRequest(customerId, timestamp, environment, softwareId, namespaces, fileInput, fileType, fileEncoding, targetId);
             var requestBase64 = SignApplicationRequestAndReturnAsBase64(applicationRequest, certificate);
@@ -514,7 +514,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
                 new XElement(ns + "Timestamp", timestamp));
         }
 
-        public static XElement GetCertificatesRequest(string customerId, DateTime timestamp, Environment environment, string softwareId, int requestId, Dictionary<string, XNamespace> namespaces, string transferKey)
+        public static XElement GetCertificatesRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, Dictionary<string, XNamespace> namespaces, string transferKey)
         {
             var applicationRequest = GetCertificateApplicationRequest(customerId, timestamp, environment, softwareId, namespaces, transferKey);
             var requestBase64 = GetBase64String(applicationRequest.ToString());
@@ -525,7 +525,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
                 new XElement(namespaces["opc"] + "ApplicationRequest", requestBase64));
         }
 
-        public static XElement GetCertificateRequest(string customerId, DateTime timestamp, Environment environment, string softwareId, int requestId, Dictionary<string, XNamespace> namespaces, string transferKey, string pkcs10)
+        public static XElement GetCertificateRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, Dictionary<string, XNamespace> namespaces, string transferKey, string pkcs10)
         {
             var applicationRequest = GetCertificateApplicationRequest(customerId, timestamp, environment, softwareId, namespaces, transferKey, pkcs10);
             var requestBase64 = GetBase64String(applicationRequest.ToString());
@@ -536,7 +536,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
                 new XElement(namespaces["opc"] + "ApplicationRequest", requestBase64));
         }
 
-        private static XElement GetCertificateApplicationRequest(string customerId, DateTime timestamp, Environment environment, string softwareId, Dictionary<string, XNamespace> namespaces, string transferKey, string pkcs10 = null)
+        private static XElement GetCertificateApplicationRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, Dictionary<string, XNamespace> namespaces, string transferKey, string pkcs10 = null)
         {
             var properties = new List<XElement>
             {

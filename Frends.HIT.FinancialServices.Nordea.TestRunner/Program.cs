@@ -1,9 +1,9 @@
 ﻿using System;
-using Frends.Community.FinancialServices.Nordea;
-using Frends.Community.FinancialServices.Nordea.Definitions;
+using Frends.HIT.FinancialServices.Nordea;
+using Frends.HIT.FinancialServices.Nordea.Definitions;
 using System.Threading;
 using Newtonsoft.Json.Linq;
-using Frends.Community.FinancialServices.Nordea.Services;
+using Frends.HIT.FinancialServices.Nordea.Services;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 

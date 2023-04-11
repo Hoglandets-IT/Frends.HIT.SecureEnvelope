@@ -1,5 +1,5 @@
-﻿using Frends.Community.FinancialServices.Nordea;
-using Frends.Community.FinancialServices.Nordea.Definitions;
+﻿using Frends.HIT.FinancialServices.Nordea;
+using Frends.HIT.FinancialServices.Nordea.Definitions;
 using Newtonsoft.Json.Linq;
 
 namespace TestRunner;

@@ -4,17 +4,17 @@ using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Newtonsoft.Json.Linq;
-using Frends.Community.FinancialServices.Nordea.Definitions;
-using Frends.Community.FinancialServices.Nordea.Helpers;
-using Frends.Community.FinancialServices.Nordea.Services;
-using Environment = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Environment;
-using Status = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Status;
+using Environment = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Environment;
+using Status = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Status;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using Frends.HIT.FinancialServices.Nordea.Definitions;
+using Frends.HIT.FinancialServices.Nordea.Helpers;
+using Frends.HIT.FinancialServices.Nordea.Services;
 
 #pragma warning disable 1591
 
-namespace Frends.Community.FinancialServices.Nordea
+namespace Frends.HIT.FinancialServices.Nordea
 {
     public class WebServices
     {
@@ -39,7 +39,7 @@ namespace Frends.Community.FinancialServices.Nordea
 
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 
-            var env = (Environment)Enum.Parse(typeof(Environment), environment);
+            var env = (Enums.Environment)Enum.Parse(typeof(Enums.Environment), environment);
             
 
             var message = MessageService.GetUserInfoMessage(cert, customerId, input.TargetId, env, input.RequestId);
@@ -81,8 +81,8 @@ namespace Frends.Community.FinancialServices.Nordea
                 Validators.ValidateStatusParameter(status);
             }
 
-            var env = (Environment)Enum.Parse(typeof(Environment), environment);
-            var fileStatus = string.IsNullOrEmpty(status) ? Status.ALL : (Status)Enum.Parse(typeof(Status), status);
+            var env = (Enums.Environment)Enum.Parse(typeof(Enums.Environment), environment);
+            var fileStatus = string.IsNullOrEmpty(status) ? Enums.Status.ALL : (Enums.Status)Enum.Parse(typeof(Enums.Status), status);
             var startDateParam = input.StartDate.ResolveDate();
             var endDateParam = input.EndDate.ResolveDate();
 
@@ -121,7 +121,7 @@ namespace Frends.Community.FinancialServices.Nordea
 
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 
-            var env = (Environment)Enum.Parse(typeof(Environment), environment);
+            var env = (Enums.Environment)Enum.Parse(typeof(Enums.Environment), environment);
 
             var encoding = string.IsNullOrEmpty(input.FileEncoding) ? Encoding.UTF8 : Encoding.GetEncoding(input.FileEncoding);
 
@@ -163,8 +163,8 @@ namespace Frends.Community.FinancialServices.Nordea
 
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 
-            var env = (Environment)Enum.Parse(typeof(Environment), environment);
-            var fileStatus = string.IsNullOrEmpty(status) ? Status.ALL : (Status)Enum.Parse(typeof(Status), status);
+            var env = (Enums.Environment)Enum.Parse(typeof(Enums.Environment), environment);
+            var fileStatus = string.IsNullOrEmpty(status) ? Enums.Status.ALL : (Enums.Status)Enum.Parse(typeof(Enums.Status), status);
             var encoding = string.IsNullOrEmpty(fileEncoding) ? Encoding.UTF8 : Encoding.GetEncoding(fileEncoding);
 
             var message = MessageService.GetDownloadFileMessage(cert, customerId, input.FileType, input.TargetId, env, input.RequestId, fileStatus, fileReference);

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using Environment = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Environment;
-using Status = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Status;
+using Environment = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Environment;
+using Status = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Status;
 
-namespace Frends.Community.FinancialServices.Nordea.Helpers
+namespace Frends.HIT.FinancialServices.Nordea.Helpers
 {
     public class Validators
     {
@@ -34,9 +34,9 @@ namespace Frends.Community.FinancialServices.Nordea.Helpers
                 throw new ArgumentException("Certificate is missing the private key for signing", nameof(certificate));
             }
 
-            if (!Enum.TryParse(environment, out Environment env))
+            if (!Enum.TryParse(environment, out Enums.Environment env))
             {
-                throw new ArgumentException($"Environment value is not valid. Valid values are: '{Environment.PRODUCTION}' / '{Environment.TEST}'", nameof(environment));
+                throw new ArgumentException($"Environment value is not valid. Valid values are: '{Enums.Environment.PRODUCTION}' / '{Enums.Environment.TEST}'", nameof(environment));
             }
 
             foreach (var stringParameter in stringParameters)
@@ -55,9 +55,9 @@ namespace Frends.Community.FinancialServices.Nordea.Helpers
 
         public static void ValidateStatusParameter(string status)
         {
-            if (!Enum.TryParse(status, out Status stat))
+            if (!Enum.TryParse(status, out Enums.Status stat))
             {
-                throw new ArgumentException($"Status value is not valid. Valid values are: '{Status.NEW}' / '{Status.DOWNLOADED}' / '{Status.ALL}'", nameof(status));
+                throw new ArgumentException($"Status value is not valid. Valid values are: '{Enums.Status.NEW}' / '{Enums.Status.DOWNLOADED}' / '{Enums.Status.ALL}'", nameof(status));
             }
         }
     }

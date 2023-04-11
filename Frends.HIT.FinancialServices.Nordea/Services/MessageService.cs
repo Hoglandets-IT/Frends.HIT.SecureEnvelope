@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Environment = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Environment;
-using Status = Frends.Community.FinancialServices.Nordea.Helpers.Enums.Status;
+using Environment = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Environment;
+using Status = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Status;
 using System.Xml.Linq;
+using Frends.HIT.FinancialServices.Nordea.Helpers;
 
-namespace Frends.Community.FinancialServices.Nordea.Services
+namespace Frends.HIT.FinancialServices.Nordea.Services
 {
     internal static class MessageService
     {
@@ -37,7 +38,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
                                                                     { "soapenv", EnvNs }
                                                                 };
 
-        public static string GetDownloadFileListMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Status status, Environment environment, int requestId)
+        public static string GetDownloadFileListMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Enums.Status status, Enums.Environment environment, int requestId)
         {
             var timestamp = DateTime.Now;
 
@@ -60,7 +61,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
             return soapRequestDocument.OuterXml;
         }
 
-        public static string GetDownloadFileMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, Environment environment, int requestId, Status status, string fileReference)
+        public static string GetDownloadFileMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, Enums.Environment environment, int requestId, Enums.Status status, string fileReference)
         {
             var timestamp = DateTime.Now;
 
@@ -83,7 +84,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // This message can be used to query user information from web service
-        public static string GetUserInfoMessage(X509Certificate2 certificate, string customerId, string targetId, Environment environment, int requestId)
+        public static string GetUserInfoMessage(X509Certificate2 certificate, string customerId, string targetId, Enums.Environment environment, int requestId)
         {
             var timestamp = DateTime.Now;
 
@@ -102,7 +103,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
             return soapRequestDocument.OuterXml;
         }
 
-        public static string GetUploadFileMessage(X509Certificate2 certificate, string customerId, Environment environment, int requestId, string fileInput, string fileType, string targetId, Encoding fileEncoding)
+        public static string GetUploadFileMessage(X509Certificate2 certificate, string customerId, Enums.Environment environment, int requestId, string fileInput, string fileType, string targetId, Encoding fileEncoding)
         {
             var timestamp = DateTime.Now;
 
@@ -125,7 +126,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // This has not yet been implemented
-        public static string GetCertificateMessage(string customerId, Environment environment, int requestId, string transferKey, string pkcs10)
+        public static string GetCertificateMessage(string customerId, Enums.Environment environment, int requestId, string transferKey, string pkcs10)
         {
             var timestamp = DateTime.Now;
 
@@ -145,7 +146,7 @@ namespace Frends.Community.FinancialServices.Nordea.Services
         }
 
         // This has not yet been implemented
-        public static string GetCertificatesMessage(string customerId, Environment environment, int requestId, string transferKey)
+        public static string GetCertificatesMessage(string customerId, Enums.Environment environment, int requestId, string transferKey)
         {
             var timestamp = DateTime.Now;
 

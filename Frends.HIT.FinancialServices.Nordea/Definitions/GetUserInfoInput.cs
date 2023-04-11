@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frends.Community.FinancialServices.Nordea.Definitions
+namespace Frends.HIT.FinancialServices.Nordea.Definitions
 {
     public class GetUserInfoInput
     {

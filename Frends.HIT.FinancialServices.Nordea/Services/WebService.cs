@@ -1,11 +1,11 @@
-﻿using Frends.Community.FinancialServices.Nordea.Definitions;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Net;
 using System.Text;
+using Frends.HIT.FinancialServices.Nordea.Definitions;
 
-namespace Frends.Community.FinancialServices.Nordea.Services
+namespace Frends.HIT.FinancialServices.Nordea.Services
 {
     internal static class WebService
     {

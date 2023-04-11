@@ -8,7 +8,7 @@ using System.Security.Cryptography.Xml;
 
 #pragma warning disable 1591
 
-namespace Frends.Community.FinancialServices.Nordea.Helpers
+namespace Frends.HIT.FinancialServices.Nordea.Helpers
 {
     public class SignedXmlWithId : SignedXml
     {
