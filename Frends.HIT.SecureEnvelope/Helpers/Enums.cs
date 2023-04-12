@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frends.HIT.FinancialServices.Nordea.Helpers
+namespace Frends.HIT.SecureEnvelope.Helpers
 {
 
 #pragma warning disable 1591

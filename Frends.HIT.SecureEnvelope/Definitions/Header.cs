@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frends.HIT.FinancialServices.Nordea.Definitions
+namespace Frends.HIT.SecureEnvelope.Definitions
 {
     internal class Header
     {

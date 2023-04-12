@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Frends.HIT.FinancialServices.Nordea\Frends.HIT.FinancialServices.Nordea.csproj" />
+    <ProjectReference Include="..\Frends.HIT.SecureEnvelope\Frends.HIT.SecureEnvelope.csproj" />
   </ItemGroup>
 
 </Project>

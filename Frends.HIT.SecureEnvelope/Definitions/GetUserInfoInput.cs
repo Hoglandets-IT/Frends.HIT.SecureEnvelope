@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frends.HIT.FinancialServices.Nordea.Definitions
+namespace Frends.HIT.SecureEnvelope.Definitions
 {
     public class GetUserInfoInput
     {
@@ -16,7 +16,7 @@ namespace Frends.HIT.FinancialServices.Nordea.Definitions
         /// </summary>
         [Required]
         [DisplayFormat(DataFormatString = "Text")]
-        [DefaultValue(@"http://filetransfer.test.nordea.com/services/CorporateFileService")]
+        [DefaultValue(@"https://filetransfer.nordea.com:443/services/CorporateFileService")]
         public string Url { get; set; }
 
         /// <summary>

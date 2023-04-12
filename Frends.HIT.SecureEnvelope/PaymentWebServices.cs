@@ -4,17 +4,17 @@ using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using Newtonsoft.Json.Linq;
-using Environment = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Environment;
-using Status = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Status;
+using Environment = Frends.HIT.SecureEnvelope.Helpers.Enums.Environment;
+using Status = Frends.HIT.SecureEnvelope.Helpers.Enums.Status;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using Frends.HIT.FinancialServices.Nordea.Definitions;
-using Frends.HIT.FinancialServices.Nordea.Helpers;
-using Frends.HIT.FinancialServices.Nordea.Services;
+using Frends.HIT.SecureEnvelope.Definitions;
+using Frends.HIT.SecureEnvelope.Helpers;
+using Frends.HIT.SecureEnvelope.Services;
 
 #pragma warning disable 1591
 
-namespace Frends.HIT.FinancialServices.Nordea
+namespace Frends.HIT.SecureEnvelope
 {
     public class WebServices
     {
@@ -118,6 +118,8 @@ namespace Frends.HIT.FinancialServices.Nordea
             };
 
             X509Certificate2 cert = CertificateService.GetX509Certificate(certificate);
+            string xml = cert.PrivateKey.ToString();
+            Console.WriteLine(xml);
 
             Validators.ValidateParameters(url, certificate, environment, stringParameters);
 

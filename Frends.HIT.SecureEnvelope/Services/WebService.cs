@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Net;
 using System.Text;
-using Frends.HIT.FinancialServices.Nordea.Definitions;
+using Frends.HIT.SecureEnvelope.Definitions;
 
-namespace Frends.HIT.FinancialServices.Nordea.Services
+namespace Frends.HIT.SecureEnvelope.Services
 {
     internal static class WebService
     {
