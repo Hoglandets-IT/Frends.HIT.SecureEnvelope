@@ -1,13 +1,4 @@
-﻿using System;
-using Frends.HIT.FinancialServices.Nordea;
-using Frends.HIT.FinancialServices.Nordea.Definitions;
-using System.Threading;
-using Newtonsoft.Json.Linq;
-using Frends.HIT.FinancialServices.Nordea.Services;
-using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Xml;
-
-namespace TestRunner
+﻿namespace Frends.HIT.SecureEnvelope.TestRunner
 {
     class Program
     {

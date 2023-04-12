@@ -11,14 +11,14 @@ using System.Xml;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Environment = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Environment;
-using Status = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Status;
+using Environment = Frends.HIT.SecureEnvelope.Helpers.Enums.Environment;
+using Status = Frends.HIT.SecureEnvelope.Helpers.Enums.Status;
 using System.Diagnostics;
-using Frends.HIT.FinancialServices.Nordea.Helpers;
+using Frends.HIT.SecureEnvelope.Helpers;
 
 #pragma warning disable 1591
 
-namespace Frends.HIT.FinancialServices.Nordea.Services
+namespace Frends.HIT.SecureEnvelope.Services
 {
     internal static class Helper
     {

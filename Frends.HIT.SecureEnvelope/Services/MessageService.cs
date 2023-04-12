@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Environment = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Environment;
-using Status = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Status;
+using Environment = Frends.HIT.SecureEnvelope.Helpers.Enums.Environment;
+using Status = Frends.HIT.SecureEnvelope.Helpers.Enums.Status;
 using System.Xml.Linq;
-using Frends.HIT.FinancialServices.Nordea.Helpers;
+using Frends.HIT.SecureEnvelope.Helpers;
 
-namespace Frends.HIT.FinancialServices.Nordea.Services
+namespace Frends.HIT.SecureEnvelope.Services
 {
     internal static class MessageService
     {

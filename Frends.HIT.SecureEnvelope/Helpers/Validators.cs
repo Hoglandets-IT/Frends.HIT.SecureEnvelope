@@ -4,10 +4,10 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using Environment = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Environment;
-using Status = Frends.HIT.FinancialServices.Nordea.Helpers.Enums.Status;
+using Environment = Frends.HIT.SecureEnvelope.Helpers.Enums.Environment;
+using Status = Frends.HIT.SecureEnvelope.Helpers.Enums.Status;
 
-namespace Frends.HIT.FinancialServices.Nordea.Helpers
+namespace Frends.HIT.SecureEnvelope.Helpers
 {
     public class Validators
     {

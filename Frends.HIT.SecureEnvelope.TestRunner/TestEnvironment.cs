@@ -1,8 +1,7 @@
-﻿using Frends.HIT.FinancialServices.Nordea;
-using Frends.HIT.FinancialServices.Nordea.Definitions;
+﻿using Frends.HIT.SecureEnvelope.Definitions;
 using Newtonsoft.Json.Linq;
 
-namespace TestRunner;
+namespace Frends.HIT.SecureEnvelope.TestRunner;
 
 public static class TestEnvironment
 {
