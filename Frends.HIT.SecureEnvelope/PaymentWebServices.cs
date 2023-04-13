@@ -44,7 +44,7 @@ namespace Frends.HIT.SecureEnvelope
 
             var message = MessageService.GetUserInfoMessage(cert, customerId, input.TargetId, env, input.RequestId);
             var result = await WebService.CallWebService(url, message, MessageService.SoftwareId, input.ConnectionTimeOutSeconds, cancellationToken);
-            Debug.WriteLine(result.StatusCode.ToString());
+            
             string resultXml = result.Body;
             var applicationResponse = CheckResultForErrorsAndReturnApplicationResult(resultXml);
 
