@@ -7,13 +7,13 @@ on:
     branches:
      - '*'
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   Unit:
   
     env:
-      DUMMY_CERT: ${{ vars.DUMMY_CERT }}
+      DUMMY_CERT: ${{ secrets.DUMMY_CERT }}
 
     runs-on: ubuntu-latest
 
