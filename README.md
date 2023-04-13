@@ -1,3 +1,5 @@
+[![Run Unit Tests](https://github.com/Hoglandets-IT/Frends.HIT.SecureEnvelope/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/Hoglandets-IT/Frends.HIT.SecureEnvelope/actions/workflows/unit-tests.yml)  [![.github/workflows/on-push-pullreq.yml](https://github.com/Hoglandets-IT/Frends.HIT.SecureEnvelope/actions/workflows/on-push-pullreq.yml/badge.svg)](https://github.com/Hoglandets-IT/Frends.HIT.SecureEnvelope/actions/workflows/on-push-pullreq.yml)
+
 # Frends.Community.PaymentServices.Nordea
 FRENDS task for using payments services of Nordea bank. With the task it's possible to fetch filelists, download files, upload files and delete files.
 
