@@ -28,4 +28,4 @@ jobs:
     - name: Build project
       run: dotnet build --configuration Release
     - name: Run unit tests
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity 
