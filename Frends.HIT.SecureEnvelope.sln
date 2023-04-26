@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Frends.HIT.SecureEnvelope", "Frends.HIT.SecureEnvelope\Frends.HIT.SecureEnvelope.csproj", "{B2691E12-4125-4F04-AEB9-245DCE01F027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frends.HIT.SecureEnvelope.TestRunner", "Frends.HIT.SecureEnvelope.TestRunner\Frends.HIT.SecureEnvelope.TestRunner.csproj", "{CFD96F2B-8033-4769-88A3-43B40A19C085}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frends.HIT.SecureEnvelope.Test", "Frends.HIT.SecureEnvelope.Test\Frends.HIT.SecureEnvelope.Test.csproj", "{6AC0C15C-E767-49D6-8BF0-5634C62E1984}"
 EndProject
 Global
