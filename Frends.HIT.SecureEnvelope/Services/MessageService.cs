@@ -38,7 +38,7 @@ namespace Frends.HIT.SecureEnvelope.Services
                                                                     { "soapenv", EnvNs }
                                                                 };
 
-        public static string GetDownloadFileListMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Enums.Status status, Enums.Environment environment, int requestId)
+        internal static string GetDownloadFileListMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Enums.Status status, Enums.Environment environment, int requestId)
         {
             var timestamp = DateTime.Now;
 
@@ -61,7 +61,7 @@ namespace Frends.HIT.SecureEnvelope.Services
             return soapRequestDocument.OuterXml;
         }
 
-        public static string GetDownloadFileMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, Enums.Environment environment, int requestId, Enums.Status status, string fileReference)
+        internal static string GetDownloadFileMessage(X509Certificate2 certificate, string customerId, string fileType, string targetId, Enums.Environment environment, int requestId, Enums.Status status, string fileReference)
         {
             var timestamp = DateTime.Now;
 
@@ -84,7 +84,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         // This message can be used to query user information from web service
-        public static string GetUserInfoMessage(X509Certificate2 certificate, string customerId, string targetId, Enums.Environment environment, int requestId)
+        internal static string GetUserInfoMessage(X509Certificate2 certificate, string customerId, string targetId, Enums.Environment environment, int requestId)
         {
             var timestamp = DateTime.Now;
 
@@ -103,7 +103,7 @@ namespace Frends.HIT.SecureEnvelope.Services
             return soapRequestDocument.OuterXml;
         }
 
-        public static string GetUploadFileMessage(X509Certificate2 certificate, string customerId, Enums.Environment environment, int requestId, string fileInput, string fileType, string targetId, Encoding fileEncoding)
+        internal static string GetUploadFileMessage(X509Certificate2 certificate, string customerId, Enums.Environment environment, int requestId, string fileInput, string fileType, string targetId, Encoding fileEncoding)
         {
             var timestamp = DateTime.Now;
 
@@ -126,7 +126,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         // This has not yet been implemented
-        public static string GetCertificateMessage(string customerId, Enums.Environment environment, int requestId, string transferKey, string pkcs10)
+        internal static string GetCertificateMessage(string customerId, Enums.Environment environment, int requestId, string transferKey, string pkcs10)
         {
             var timestamp = DateTime.Now;
 
@@ -146,7 +146,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         // This has not yet been implemented
-        public static string GetCertificatesMessage(string customerId, Enums.Environment environment, int requestId, string transferKey)
+        internal static string GetCertificatesMessage(string customerId, Enums.Environment environment, int requestId, string transferKey)
         {
             var timestamp = DateTime.Now;
 

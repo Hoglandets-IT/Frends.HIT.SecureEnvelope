@@ -23,7 +23,7 @@ namespace Frends.HIT.SecureEnvelope.Services
     internal static class Helper
     {
         // Builds the SOAP request XML by adding signature node to the SOAP request with SOAP envelope and body 
-        public static XmlDocument GetSoapRequestXmlDocument(X509Certificate2 certificate, XElement soapBodyContent, DateTime timestamp, Dictionary<string, XNamespace> namespaces)
+        internal static XmlDocument GetSoapRequestXmlDocument(X509Certificate2 certificate, XElement soapBodyContent, DateTime timestamp, Dictionary<string, XNamespace> namespaces)
         {
             var bodyReferenceId = $"bodyId-{Guid.NewGuid()}";
             var timestampReferenceId = $"timestampId-{Guid.NewGuid()}";
@@ -188,7 +188,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         // Builds SOAP request body for getting a list of available files 
-        public static XElement GetDownloadFileListRequest(string customerId, DateTime timestamp, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Enums.Status status, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces)
+        internal static XElement GetDownloadFileListRequest(string customerId, DateTime timestamp, string fileType, string targetId, DateTime? startDate, DateTime? endDate, Enums.Status status, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces)
         {
             var applicationRequest = GetFileListApplicationRequest(customerId, timestamp, environment, softwareId, fileType, targetId, startDate, endDate, status, namespaces);
             var requestBase64 = SignApplicationRequestAndReturnAsBase64(applicationRequest, certificate);
@@ -200,7 +200,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         // Builds SOAP request body for downloading a file
-        public static XElement GetDownloadFileRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, string fileReference, string fileType, string targetId, X509Certificate2 certificate, Enums.Status status, Dictionary<string, XNamespace> namespaces)
+        internal static XElement GetDownloadFileRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, string fileReference, string fileType, string targetId, X509Certificate2 certificate, Enums.Status status, Dictionary<string, XNamespace> namespaces)
         {
             var applicationRequest = GetFileApplicationRequest(customerId, timestamp, environment, softwareId, fileReference, fileType, targetId, status, namespaces);
             var requestBase64 = SignApplicationRequestAndReturnAsBase64(applicationRequest, certificate);
@@ -212,7 +212,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         // Builds SOAP request body for getting user info
-        public static XElement GetUserInfoRequest(string customerId, string targetId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces)
+        internal static XElement GetUserInfoRequest(string customerId, string targetId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces)
         {
             var applicationRequest = GetUserInfoApplicationRequest(customerId, targetId, timestamp, environment, softwareId, namespaces);
             var requestBase64 = SignApplicationRequestAndReturnAsBase64(applicationRequest, certificate);
@@ -224,7 +224,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         // Builds SOAP request body for uploading a file
-        public static XElement GetUploadFileRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces, string fileInput, string fileType, Encoding fileEncoding, string targetId)
+        internal static XElement GetUploadFileRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, X509Certificate2 certificate, Dictionary<string, XNamespace> namespaces, string fileInput, string fileType, Encoding fileEncoding, string targetId)
         {
             var applicationRequest = GetUploadFileApplicationRequest(customerId, timestamp, environment, softwareId, namespaces, fileInput, fileType, fileEncoding, targetId);
             var requestBase64 = SignApplicationRequestAndReturnAsBase64(applicationRequest, certificate);
@@ -307,7 +307,7 @@ namespace Frends.HIT.SecureEnvelope.Services
             return result;
         }
 
-        public static string GetContentFromBase64(string input, bool compressedWithGzip, Encoding fileEncoding)
+        internal static string GetContentFromBase64(string input, bool compressedWithGzip, Encoding fileEncoding)
         {
             var input64 = Convert.FromBase64String(input);
 
@@ -367,14 +367,14 @@ namespace Frends.HIT.SecureEnvelope.Services
             return element.DescendantNodesAndSelf().Where(n => n is XElement).Cast<XElement>().FirstOrDefault(e => e.Name.LocalName == elementName);
         }
 
-        public static string GetApplicationResponseXml(string responseXml)
+        internal static string GetApplicationResponseXml(string responseXml)
         {
             var response = FindElement(responseXml, "ApplicationResponse");
 
             return GetUtf8StringFromBase64(response?.Value);
         }
 
-        public static bool VerifyApplicationResponseSignature(string applicationResponseXml)
+        internal static bool VerifyApplicationResponseSignature(string applicationResponseXml)
         {
             //Whitespace needs to be preserved
             var document = new XmlDocument() { PreserveWhitespace = true };
@@ -388,14 +388,14 @@ namespace Frends.HIT.SecureEnvelope.Services
             return signedXml.CheckSignature();
         }
 
-        public static bool CheckIfCallWasSuccessful(string responseXml)
+        internal static bool CheckIfCallWasSuccessful(string responseXml)
         {
             var response = FindElement(responseXml, "ResponseCode");
 
             return response?.Value == "00";
         }
 
-        public static string GetFileFromResponseXml(string applicationResponseXml, Encoding fileEncoding)
+        internal static string GetFileFromResponseXml(string applicationResponseXml, Encoding fileEncoding)
         {
             var content = FindElement(applicationResponseXml, "Content")?.Value;
             var compressed = bool.Parse(FindElement(applicationResponseXml, "Compressed")?.Value ?? "false");
@@ -408,7 +408,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         //      -GetFileListResultFromResponseXml
         //      -GetFileInfoFromResponseXml
 
-        public static JToken GetUserInfoFromResponseXml(string applicationResponseXml)
+        internal static JToken GetUserInfoFromResponseXml(string applicationResponseXml)
         {
             // Generic handling due to not being tested yet
             var document = new XmlDocument();
@@ -420,7 +420,7 @@ namespace Frends.HIT.SecureEnvelope.Services
             return resultToken;
         }
 
-        public static JToken GetFileListResultFromResponseXml(string applicationResponseXml)
+        internal static JToken GetFileListResultFromResponseXml(string applicationResponseXml)
         {
             var document = new XmlDocument();
             document.LoadXml(applicationResponseXml);
@@ -446,7 +446,7 @@ namespace Frends.HIT.SecureEnvelope.Services
             }
         }
 
-        public static JToken GetFileInfoFromResponseXml(string applicationResponseXml)
+        internal static JToken GetFileInfoFromResponseXml(string applicationResponseXml)
         {
             string resp = applicationResponseXml;
 
@@ -497,7 +497,7 @@ namespace Frends.HIT.SecureEnvelope.Services
             writer.WriteEndObject();
         }
 
-        public static string GetErrorMessage(string applicationResponseXml)
+        internal static string GetErrorMessage(string applicationResponseXml)
         {
             var responseCode = FindElement(applicationResponseXml, "ResponseCode")?.Value;
             var responseText = FindElement(applicationResponseXml, "ResponseText")?.Value;
@@ -514,7 +514,7 @@ namespace Frends.HIT.SecureEnvelope.Services
                 new XElement(ns + "Timestamp", timestamp));
         }
 
-        public static XElement GetCertificatesRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, Dictionary<string, XNamespace> namespaces, string transferKey)
+        internal static XElement GetCertificatesRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, Dictionary<string, XNamespace> namespaces, string transferKey)
         {
             var applicationRequest = GetCertificateApplicationRequest(customerId, timestamp, environment, softwareId, namespaces, transferKey);
             var requestBase64 = GetBase64String(applicationRequest.ToString());
@@ -525,7 +525,7 @@ namespace Frends.HIT.SecureEnvelope.Services
                 new XElement(namespaces["opc"] + "ApplicationRequest", requestBase64));
         }
 
-        public static XElement GetCertificateRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, Dictionary<string, XNamespace> namespaces, string transferKey, string pkcs10)
+        internal static XElement GetCertificateRequest(string customerId, DateTime timestamp, Enums.Environment environment, string softwareId, int requestId, Dictionary<string, XNamespace> namespaces, string transferKey, string pkcs10)
         {
             var applicationRequest = GetCertificateApplicationRequest(customerId, timestamp, environment, softwareId, namespaces, transferKey, pkcs10);
             var requestBase64 = GetBase64String(applicationRequest.ToString());
@@ -552,7 +552,7 @@ namespace Frends.HIT.SecureEnvelope.Services
             return new XElement(namespaces["bxd"] + "CertApplicationRequest", properties);
         }
 
-        public static XmlDocument GetEmptySoapEnvelope(XElement soapBodyContent, DateTime timestamp, Dictionary<string, XNamespace> namespaces)
+        internal static XmlDocument GetEmptySoapEnvelope(XElement soapBodyContent, DateTime timestamp, Dictionary<string, XNamespace> namespaces)
         {
             var soapHeader = new XElement(namespaces["soapenv"] + "Header");
             var soapBody = new XElement(namespaces["soapenv"] + "Body",
@@ -568,7 +568,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         //If input cannot be parsed to DateTime, the value should be null so that it is not used when building the SOAP messages.
-        public static DateTime? ResolveDate(this string input)
+        internal static DateTime? ResolveDate(this string input)
         {
             DateTime parsedInput;
             if (DateTime.TryParse(input, out parsedInput))

@@ -94,7 +94,7 @@ namespace Frends.HIT.SecureEnvelope.Services
         }
 
         // The method that sends the SOAP messages to OP web service interface
-        public static async Task<HttpResponse> CallWebService(string url, string soapMessage, string softwareId, int connectionTimeoutSeconds, CancellationToken cancellationToken)
+        internal static async Task<HttpResponse> CallWebService(string url, string soapMessage, string softwareId, int connectionTimeoutSeconds, CancellationToken cancellationToken)
         {
             var settings = new WebServiceSettings();
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -132,7 +132,7 @@ namespace Frends.HIT.SecureEnvelope.Services
             }
         }
     }
-    public static class Extensions
+    internal static class Extensions
     {
         internal static void SetHandlerSettingsBasedOnSettings(this HttpClientHandler handler, WebServiceSettings settings)
         {

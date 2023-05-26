@@ -1,17 +1,16 @@
 ﻿{
   "Tasks": [
     {
-      "TaskMethod": "Frends.HIT.SecureEnvelope.WebServices.GetUserInfo"
+      "TaskMethod": "Frends.HIT.SecureEnvelope.PaymentWebServices.GetUserInfo"
     },
     {
-      "TaskMethod": "Frends.HIT.SecureEnvelope.WebServices.DownloadFileList"
+      "TaskMethod": "Frends.HIT.SecureEnvelope.PaymentWebServices.DownloadFileList"
     },
     {
-      "TaskMethod": "Frends.HIT.SecureEnvelope.WebServices.UploadFile"
+      "TaskMethod": "Frends.HIT.SecureEnvelope.PaymentWebServices.UploadFile"
     },
     {
-      "TaskMethod": "Frends.HIT.SecureEnvelope.WebServices.DownloadFile"
+      "TaskMethod": "Frends.HIT.SecureEnvelope.PaymentWebServices.DownloadFile"
     }
   ]
-
 }
