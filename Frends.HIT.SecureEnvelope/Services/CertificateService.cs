@@ -14,7 +14,7 @@ namespace Frends.HIT.SecureEnvelope.Services
     public class CertificateService
     {
         private const string CertCheck = "-----BEGIN CERTIFICATE-----";
-        public static X509Certificate2 GetX509Certificate(string certificate)
+        internal static X509Certificate2 GetX509Certificate(string certificate)
         {
             if (string.IsNullOrEmpty(certificate))
             {
