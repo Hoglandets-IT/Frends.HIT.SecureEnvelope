@@ -249,3 +249,9 @@ ModelManifest.xml
 
 #My test runner
 Frends.HIT.SecureEnvelope.TestRunner
+
+LocalSettings.cs
+LocalInput.xml
+LocalOutput.xml
+Frends.HIT.SecureEnvelope.Old/
+Frends.HIT.SecureEnvelope.Test.old/

@@ -1,16 +1,10 @@
-﻿{
-  "Tasks": [
-    {
-      "TaskMethod": "Frends.HIT.SecureEnvelope.PaymentWebServices.GetUserInfo"
-    },
-    {
-      "TaskMethod": "Frends.HIT.SecureEnvelope.PaymentWebServices.DownloadFileList"
-    },
-    {
-      "TaskMethod": "Frends.HIT.SecureEnvelope.PaymentWebServices.UploadFile"
-    },
-    {
-      "TaskMethod": "Frends.HIT.SecureEnvelope.PaymentWebServices.DownloadFile"
-    }
-  ]
+{
+    "Tasks": [
+        {
+        "TaskMethod": "Frends.HIT.SecureEnvelope.ApplicationRequest.Create"
+        },
+        {
+        "TaskMethod": "Frends.HIT.SecureEnvelope.ApplicationRequest.Decode"
+        }
+    ]
 }
