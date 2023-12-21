@@ -1,23 +1,32 @@
 on:
-  push:
-    paths: ['Frends.HIT.SecureEnvelope/**', '.github/workflows/on-push-pullreq.yml']
-    branches: ['master']
+  release:
+    types: [published]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-    - name: Build and publish
-      uses: hoglandets-it/gha-dotnet-builder@main
-      with:
-        buildShell: bash
-        buildVersion: VERSION
-        incrementVersion: patch
-        incrementVersionWriteback: "true"
-        writebackName: "AutoPush"
-        writebackEmail: "developer@hoglan.dev"
-        buildConfiguration: "Release"
-        includeSource: "true"
-        packageFeedUrl: ${{ secrets.FRENDS_NUGET_FEED_URL }}
-        packageFeedSecret: ${{ secrets.FRENDS_NUGET_FEED_KEY }}
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.x
+      - name: Build and Pack
+        run: |
+          dotnet restore Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj
+          dotnet build --configuration Release Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj /p:Version=$GITHUB_REF_NAME
+          dotnet pack --configuration Release Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj /p:Version=$GITHUB_REF_NAME
+          dotnet nuget push Frends.HIT.SecureEnvelope/bin/Release/Frends.HIT.SecureEnvelope.*.nupkg --source ${{ secrets.FRENDS_NUGET_FEED_URL }} --api-key ${{ secrets.FRENDS_NUGET_FEED_KEY }}
+      - name: Publish release to Github
+        uses: softprops/action-gh-release@v1
+        with:
+          files: Frends.HIT.SecureEnvelope/bin/Release/Frends.HIT.SecureEnvelope.*.nupkg
+          tag_name: ${{ github.ref }}
+          body: |
+            Release ${{ github.ref }} created by ${{ github.actor }}
+          draft: false
+          prerelease: false
