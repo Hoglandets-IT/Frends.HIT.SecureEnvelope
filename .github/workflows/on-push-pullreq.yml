@@ -21,12 +21,11 @@ jobs:
           dotnet build --configuration Release Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj /p:Version=$GITHUB_REF_NAME
           dotnet pack --configuration Release Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj /p:Version=$GITHUB_REF_NAME
           dotnet nuget push Frends.HIT.SecureEnvelope/bin/Release/Frends.HIT.SecureEnvelope.*.nupkg --source ${{ secrets.FRENDS_NUGET_FEED_URL }} --api-key ${{ secrets.FRENDS_NUGET_FEED_KEY }}
-      - name: Publish release to Github
-        uses: softprops/action-gh-release@v1
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          files: Frends.HIT.SecureEnvelope/bin/Release/Frends.HIT.SecureEnvelope.*.nupkg
-          tag_name: ${{ github.ref }}
-          body: |
-            Release ${{ github.ref }} created by ${{ github.actor }}
-          draft: false
-          prerelease: false
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: Frends.HIT.SecureEnvelope/bin/Release/Frends.HIT.SecureEnvelope.*.nupkg
+          asset_name: Frends.HIT.SecureEnvelope.$GITHUB_REF_NAME.nupkg
+          tag: ${{ github.ref }}
+          overwrite: true
