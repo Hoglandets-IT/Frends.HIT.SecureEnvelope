@@ -25,7 +25,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: Frends.HIT.SecureEnvelope/bin/Release/Frends.HIT.SecureEnvelope.*.nupkg
-          asset_name: Frends.HIT.SecureEnvelope.$GITHUB_REF_NAME.nupkg
+          file: Frends.HIT.SecureEnvelope/bin/Release/*.nupkg
+          file_glob: true
           tag: ${{ github.ref }}
           overwrite: true
