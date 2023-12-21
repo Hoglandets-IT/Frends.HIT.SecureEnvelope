@@ -14,12 +14,6 @@
       <None Include="FrendsTaskMetadata.json" Pack="true" PackagePath="/">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Include="ApplicationRequest.xsd" Pack="true" PackagePath="/">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Include="XmlDsigSchema.xsd" Pack="true" PackagePath="/">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />

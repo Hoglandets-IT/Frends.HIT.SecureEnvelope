@@ -1,28 +1,13 @@
-using System.Diagnostics;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using System.Security.Cryptography.Xml;
 using System.Xml;
 using System.Xml.Serialization;
-using System.CodeDom.Compiler;
-using System.Xml.Schema;
-using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 
 namespace Frends.HIT.SecureEnvelope.Definitions {
-    public enum Environment
-    {
-        TEST,
-        PRODUCTION
-    }
-
     /// <summary>
     /// Parameters for creating an ApplicationRequest
     /// </summary>
@@ -74,46 +59,48 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
         public string FileContent { get; set; }
 
         /// <summary>
-        /// File type to upload (e.g. "pain.001.001.02").
+        /// File type to upload (e.g. "pain.001.001.03").
         /// </summary>
         [Required]
         [DisplayFormat(DataFormatString = "Text")]
-        [DefaultValue("")]
-        public string FileType { get; set; }
+        [DefaultValue(UploadFileTypes.NDCAPXMLI)]
+        public UploadFileTypes FileType { get; set; }
+    }
+
+    /// <summary>
+    /// The response back from the UploadFile task
+    /// </summary>
+    public class ApplicationRequestOutput {
+        /// <summary>
+        /// The minified and signed XML data to send to Nordea
+        /// </summary>
+        public string XmlData { get; set; }
+
+        /// <summary>
+        /// The application request object, to retrieve any signature parameters
+        /// </summary>
+        public UploadFileApplicationRequest ApplicationRequest { get; set; }
+    }
+   
+    /// <summary>
+    /// The available types for uploading files to Nordea
+    /// </summary>
+    public enum UploadFileTypes {
+        
+        /// The XML file type for pain.001.001.03
+        [Display(Name = "pain.001.001.03")]
+        NDCAPXMLI,
+
+        /// The XML file type for camt.055.001.01
+        [Display(Name = "camt.055.001.01")]
+        NDCAPCANXMLI
     }
 
 
-     internal class XmlSettings {
-            internal static XNamespace ModelNs = "http://model.bxd.fi";
-            internal static readonly XNamespace CorporateNs = "http://bxd.fi/CorporateFileService";
-            internal static readonly XNamespace DataNs = "http://bxd.fi/xmldata/";
-            internal static readonly XNamespace EnvNs = "http://schemas.xmlsoap.org/soap/envelope/";
-            internal static readonly XNamespace WsuNs = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd";
-            internal static readonly XNamespace WsseNs = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd";
-
-            internal static readonly Dictionary<string, XNamespace> Namespaces = new Dictionary<string, XNamespace>
-                                                                    {
-                                                                        { "mod", ModelNs },
-                                                                        { "cor", CorporateNs },
-                                                                        { "bxd", DataNs },
-                                                                        { "soapenv", EnvNs },
-                                                                        { "wsu", WsuNs },
-                                                                        { "wsse", WsseNs },
-                                                                    };
-
-
-            internal static readonly Dictionary<string, XNamespace> FewNamespaces = new Dictionary<string, XNamespace>
-                                                                    {
-                                                                        { "soapenv", EnvNs }
-                                                                    };
-
-    }
-
-    
-    [System.Xml.Serialization.XmlRootAttribute(ElementName = "ApplicationRequest", Namespace = "http://bxd.fi/xmldata/")]
     /// <summary>
     /// The request document for uploading a file
     /// </summary>
+    [XmlRoot(ElementName = "ApplicationRequest", Namespace = "http://bxd.fi/xmldata/")]
     public class UploadFileApplicationRequest {
         /// <summary>
         /// "SenderID"
@@ -122,86 +109,95 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
         /// When signing the ApplicationRequest element, the certificate used to verify the Signature must be 
         /// associated with the CustomerId given in this field
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "CustomerId")]
+        [XmlElement(ElementName = "CustomerId")]
         public string CustomerId { get; set; }
 
         /// <summary>
         /// The request type for the application request, always UploadFile for file uploads
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "Command")]
+        [XmlElement(ElementName = "Command")]
         public virtual string Command { get { return "UploadFile"; } set {} }
        
         /// <summary>
         /// The timestamp when the document was created
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "Timestamp")]
+        [XmlElement(ElementName = "Timestamp")]
         public DateTime Timestamp { get; set; }
 
 
         /// <summary>
         /// The environment to send the file to
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "Environment")]
+        [XmlElement(ElementName = "Environment")]
         public virtual string Environment { get { return "PRODUCTION"; } set {} }
 
         /// <summary>
         /// "SignerID"
         /// The SignerId for the customer
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "TargetId")]
+        [XmlElement(ElementName = "TargetId")]
         public string TargetId { get; set; }
 
         /// <summary>
         /// A custom unique identifier for the sent file
         /// </summary>
         /// <value></value>
-        [System.Xml.Serialization.XmlElement(ElementName = "ExecutionSerial")]
+        [XmlElement(ElementName = "ExecutionSerial")]
         public string ExecutionSerial { get; set; }
 
         /// <summary>
         /// Indicate the content of the file is compressed
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "Compression")]
+        [XmlElement(ElementName = "Compression")]
         public virtual string Compression { get { return "true"; } set {} }
 
         /// <summary>
         /// Indicate the compression method used to compress the file
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "CompressionMethod")]
+        [XmlElement(ElementName = "CompressionMethod")]
         public virtual string CompressionMethod { get { return "GZIP"; } set {} }
         /// <summary>
         /// The identifier of the client sending the data
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "SoftwareId")]
+        [XmlElement(ElementName = "SoftwareId")]
         public virtual string SoftwareId { get { return "Frends-IntegrationPlatform"; } set {} }
 
         /// <summary>
         /// The type of file (e.g. pain.001.001.04)
         /// </summary>
         /// <value></value>
-        [System.Xml.Serialization.XmlElement(ElementName = "FileType")]
-        public string FileType { get; set; }
+        [XmlElement(ElementName = "FileType")]
+        public UploadFileTypes FileType { get; set; }
 
         /// <summary>
         /// The content, gzipped and Base64-encoded file
         /// </summary>
-        [System.Xml.Serialization.XmlElement(ElementName = "Content")]
+        [XmlElement(ElementName = "Content")]
         public string Content { get; set; }
 
         /// <summary>
         /// The signature of the data
         /// </summary>
         /// <value></value>
-        [System.Xml.Serialization.XmlElement(ElementName = "Signature")]
+        [XmlElement(ElementName = "Signature")]
         internal Signature Signature { get; set; }
 
         private string _XMLDATA { get; set; }
 
+        /// <summary>
+        /// Create a new Application Request
+        /// </summary>
+        /// <param name="customerId">The ID of the customer (SenderID)</param>
+        /// <param name="targetId">The ID of the signer/certificate (SignerID)</param>
+        /// <param name="executionSerial">Custom serial number to pass in the object</param>
+        /// <param name="fileType">The type of file being sent</param>
+        /// <param name="fileContent"></param>
+        /// <returns></returns>
         public static UploadFileApplicationRequest New(
             string customerId,
             string targetId,
             string executionSerial,
-            string fileType,
+            UploadFileTypes fileType,
             string fileContent
         ) {
             return new UploadFileApplicationRequest(){
@@ -210,17 +206,20 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
                 ExecutionSerial = executionSerial,
                 Timestamp = DateTime.Now,
                 FileType = fileType,
-                Content = Helpers.GetBase64String(fileContent),
+                Content = Helpers.GzipAndBase64Encode(fileContent),
             };
         }
 
+        /// <summary>
+        /// Serialize the Application Request for transfer to bank
+        /// </summary>
         public void Serialize() {
             XmlSerializer serializer = new XmlSerializer(typeof(UploadFileApplicationRequest));
 
             using (var sw = new StringWriter())
             using (XmlWriter writer = XmlWriter.Create(sw, new XmlWriterSettings{
                 Encoding = Encoding.UTF8,
-                Indent = true,
+                Indent = false,
                 OmitXmlDeclaration = true
             })) {
                 serializer.Serialize(writer, this);
@@ -228,6 +227,10 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
             }
         }
 
+        /// <summary>
+        /// Sign and serialize the ApplicationRequest for transfer to bank
+        /// </summary>
+        /// <param name="cert"></param>
         public void Sign(X509Certificate2 cert) {
             Serialize();
 
@@ -260,11 +263,12 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
             _XMLDATA = xmlDoc.OuterXml;
         }
 
+        /// <summary>
+        /// Retrieve signed data
+        /// </summary>
+        /// <returns></returns>
         public string GetSigned() {
             return _XMLDATA;
         }
-
-       
-
     }
 }

@@ -8,7 +8,11 @@ namespace Frends.HIT.SecureEnvelope {
     /// </summary>
     public class ApplicationRequests {
         
-        public static string UploadFile(Definitions.ApplicationRequestInput input) {
+        /// <summary>
+        /// Upload a file to Nordea 
+        /// </summary>
+        /// <param name="input">Input parameters and file content</param>
+        public static Definitions.ApplicationRequestOutput UploadFile(Definitions.ApplicationRequestInput input) {
             var cert = Helpers.GetX509Certificate(input.Certificate, input.PrivateKey);
 
             var applicationRequest = Definitions.UploadFileApplicationRequest.New(
@@ -20,19 +24,14 @@ namespace Frends.HIT.SecureEnvelope {
             );
 
             applicationRequest.Sign(cert);
-            return applicationRequest.GetSigned();
 
-            // var applicationRequest = new Definitions.ApplicationRequest(){
-            //     CustomerId = input.CustomerId,
-            //     Environment = Definitions.Environment.PRODUCTION,
-            //     FileContent = input.FileContent,
-            //     FileType = input.FileType
-            // };
-
-            // applicationRequest.CreateApplicationRequestMessage();
+            var response = new Definitions.ApplicationRequestOutput(){
+                XmlData = applicationRequest.GetSigned(),
+                ApplicationRequest = applicationRequest
+            };
 
 
-            // return new Definitions.ApplicationRequest();
+            return response;
         }
     }
 }

@@ -8,13 +8,12 @@ var inputContent = File.ReadAllText("LocalInput.xml");
 var conf = new ApplicationRequestInput(){
     Certificate = LocalSettings.ProdCertificatePem,
     PrivateKey = LocalSettings.ProdPrivkeyPem,
-    SignerId = "17071828802",
-    SenderId = "67818244775",
+    SignerId = "1234567890",
+    SenderId = "1234567890",
     RequestId = "ffffffff-ffff-ffff-ffff-ffffffff",
     FileContent = inputContent,
-    // FileType = "pain.001.001.03"
-    FileType = "NDCAPXMLI"
+    FileType = UploadFileTypes.NDCAPXMLI
 };
 
 var xmlf = ApplicationRequests.UploadFile(conf);
-File.WriteAllText("LocalOutput.xml", xmlf);
+File.WriteAllText("LocalOutput.xml", xmlf.XmlData);
