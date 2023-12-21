@@ -1,7 +1,7 @@
 on:
   push:
-    paths: ['Frends.HIT.SecureEnelope/**', '.github/workflows/on-push-pullreq.yml']
-    branches: [master]
+    paths: ['Frends.HIT.SecureEnvelope/**', '.github/workflows/on-push-pullreq.yml']
+    branches: ['master']
 
 jobs:
   build:
