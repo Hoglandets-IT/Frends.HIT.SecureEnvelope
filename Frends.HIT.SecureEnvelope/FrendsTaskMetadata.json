@@ -1,7 +1,7 @@
 {
     "Tasks": [
         {
-        "TaskMethod": "Frends.HIT.SecureEnvelope.ApplicationRequest.UploadFile"
+        "TaskMethod": "Frends.HIT.SecureEnvelope.ApplicationRequests.UploadFile"
         }
     ]
 }

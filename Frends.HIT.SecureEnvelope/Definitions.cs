@@ -17,7 +17,7 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
         /// An Exception is thrown if a certificate is not found or it has already expired.
         /// </summary>
         [Required]
-        [DisplayFormat(DataFormatString = "Text")]
+        [DisplayFormat(DataFormatString = "Expression")]
         public string Certificate { get; set; }
         
         /// <summary>
@@ -25,7 +25,7 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
         /// An Exception is thrown if a certificate is not found or it has already expired.
         /// </summary>
         [Required]
-        [DisplayFormat(DataFormatString = "Text")]
+        [DisplayFormat(DataFormatString = "Expression")]
         public string PrivateKey { get; set; }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
         /// The file to include in the Application Request
         /// </summary>
         [Required]
-        [DisplayFormat(DataFormatString = "Text")]
+        [DisplayFormat(DataFormatString = "Expression")]
         public string FileContent { get; set; }
 
         /// <summary>

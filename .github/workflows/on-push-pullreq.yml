@@ -19,7 +19,7 @@ jobs:
         run: |
           dotnet restore Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj
           dotnet build --configuration Release Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj /p:Version=$GITHUB_REF_NAME
-          dotnet pack --configuration Release Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj /p:Version=$GITHUB_REF_NAME
+          dotnet pack --configuration Release Frends.HIT.SecureEnvelope/Frends.HIT.SecureEnvelope.csproj --include-source /p:Version=$GITHUB_REF_NAME
           dotnet nuget push Frends.HIT.SecureEnvelope/bin/Release/Frends.HIT.SecureEnvelope.*.nupkg --source ${{ secrets.FRENDS_NUGET_FEED_URL }} --api-key ${{ secrets.FRENDS_NUGET_FEED_KEY }}
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
