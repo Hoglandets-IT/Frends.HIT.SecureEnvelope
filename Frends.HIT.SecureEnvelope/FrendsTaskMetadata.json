@@ -1,7 +1,10 @@
 {
     "Tasks": [
         {
-        "TaskMethod": "Frends.HIT.SecureEnvelope.ApplicationRequests.UploadFile"
+            "TaskMethod": "Frends.HIT.SecureEnvelope.ApplicationRequests.UploadFile"
+        },
+        {
+            "TaskMethod": "Frends.HIT.SecureEnvelope.ApplicationResponses.ParseResponse"
         }
     ]
 }

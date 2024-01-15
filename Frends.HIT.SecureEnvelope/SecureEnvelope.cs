@@ -35,6 +35,9 @@ namespace Frends.HIT.SecureEnvelope {
         }
     }
 
+    /// <summary>
+    /// Handle responses from Nordea
+    /// </summary>
     public class ApplicationResponses {
 
         /// <summary>
