@@ -34,4 +34,28 @@ namespace Frends.HIT.SecureEnvelope {
             return response;
         }
     }
+
+    public class ApplicationResponses {
+
+        /// <summary>
+        /// Parse a file downloaded from Nordea
+        /// </summary>
+        /// <param name="xmlData">The XML data from the fetched file</param>
+        /// <returns>ApplicationResponse {
+        /// string CustomerId
+        /// string Timestamp
+        /// string ResponseCode
+        /// string ResponseText
+        /// string ExecutionSerial
+        /// bool Encrypted
+        /// bool Compressed
+        /// FileDescriptor FileDescriptors
+        /// string FileType
+        /// string Content
+        ///  }
+        /// </returns>
+        public static Definitions.ApplicationResponse ParseResponse(string xmlData) {
+            return Definitions.ApplicationResponse.Deserialize(xmlData);
+        }
+    }
 }

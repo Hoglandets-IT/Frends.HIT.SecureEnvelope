@@ -99,6 +99,12 @@ namespace Frends.HIT.SecureEnvelope {
             return Convert.ToBase64String(inputByteArray, Base64FormattingOptions.None);
         }
 
+        internal static string Base64Decode(string input) {
+            var inputByteArray = Convert.FromBase64String(input);
+
+            return Encoding.UTF8.GetString(inputByteArray);
+        }
+
         /// <summary>
         /// Compress with Gzip and base64-encode the result
         /// </summary>

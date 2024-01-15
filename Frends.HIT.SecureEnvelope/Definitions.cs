@@ -96,7 +96,6 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
         NDCAPCANXMLI
     }
 
-
     /// <summary>
     /// The request document for uploading a file
     /// </summary>
@@ -149,7 +148,7 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
         /// Indicate the content of the file is compressed
         /// </summary>
         [XmlElement(ElementName = "Compression")]
-        public virtual string Compression { get { return "true"; } set {} }
+        public virtual string Compression { get { return "false"; } set {} }
 
         /// <summary>
         /// Indicate the compression method used to compress the file
@@ -206,7 +205,8 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
                 ExecutionSerial = executionSerial,
                 Timestamp = DateTime.Now,
                 FileType = fileType,
-                Content = Helpers.GzipAndBase64Encode(fileContent),
+                // Content = Helpers.GzipAndBase64Encode(fileContent),
+                Content = Helpers.Base64Encode(fileContent),
             };
         }
 
@@ -271,4 +271,83 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
             return _XMLDATA;
         }
     }
+
+    public class SignedXmlWithId : SignedXml
+    {
+        public SignedXmlWithId(XmlDocument document) : base(document)
+        {
+        }
+
+        public override XmlElement GetIdElement(XmlDocument doc, string id)
+        {
+            var idElem = base.GetIdElement(doc, id);
+
+            if (idElem == null)
+            {
+                var nsManager = new XmlNamespaceManager(doc.NameTable);
+                nsManager.AddNamespace("wsu", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
+                idElem = doc.SelectSingleNode("//*[@wsu:Id=\"" + id + "\"]", nsManager) as XmlElement;
+            }
+
+            return idElem;
+        }
+    }
+    
+    public class FileDescriptor {
+        public string FileReference { get; set; }
+        public string TargetId { get; set; }
+        public string ParentFileReference { get; set; }
+        public string FileType { get; set; }
+        public string FileTimestamp { get; set; }
+        public string Status { get; set; }
+    }
+
+    /// <summary>
+    /// The response document from Nordea
+    /// </summary>
+    [XmlRoot(ElementName = "ApplicationResponse", Namespace = "http://bxd.fi/xmldata/")]
+    public class ApplicationResponse {
+        /// <summary>
+        /// "SenderID"
+        /// Code used by the bank to identify the customer who originated this request. This code is 
+        /// bank specific, i.e. each bank issues and manages its own CustomerIds. 
+        /// When signing the ApplicationRequest element, the certificate used to verify the Signature must be 
+        /// associated with the CustomerId given in this field
+        /// </summary>
+        [XmlElement(ElementName = "CustomerId")]
+        public string CustomerId { get; set; }    
+
+        public string Timestamp { get; set; }
+        public string ResponseCode { get; set; }
+        public string ResponseText { get; set; }
+        public string ExecutionSerial { get; set; }
+        public bool Encrypted { get; set; }
+        public bool Compressed { get; set; }
+        public FileDescriptor FileDescriptors { get; set; }
+        public string FileType { get; set; }
+        public string Content { get; set; }
+
+        public static ApplicationResponse Deserialize(string xml) {
+            // var document = new XmlDocument() { PreserveWhitespace = true };
+            // document.LoadXml(xml);
+
+            // var signedXml = new SignedXml(document);
+
+            // var signatureElement = document.GetElementsByTagName("ds:Signature").Cast<XmlElement>().First();
+            // signedXml.LoadXml(signatureElement);
+
+            // if (!signedXml.CheckSignature()) {
+            //     throw new CryptographicException("Signature verification failed");
+            // }
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ApplicationResponse));
+            using (var sr = new StringReader(xml))
+            using (XmlReader reader = XmlReader.Create(sr)) {
+                var appResponse = (ApplicationResponse)serializer.Deserialize(reader);
+                appResponse.Content = Helpers.Base64Decode(appResponse.Content);
+                return appResponse;
+            }
+        }
+    }
+
 }
