@@ -1,6 +1,6 @@
 using Frends.HIT.SecureEnvelope;
 using Frends.HIT.SecureEnvelope.Definitions;
-using Frends.HIT.SecureEnvelope.Tests;
+// using Frends.HIT.SecureEnvelope.Tests;
 
 // Open and read LocalInput.xml
 // var inputContent = File.ReadAllText("LocalInput.xml");
@@ -18,8 +18,7 @@ using Frends.HIT.SecureEnvelope.Tests;
 // var xmlf = ApplicationRequests.UploadFile(conf);
 // File.WriteAllText("/mnt/d/Temp/Nordea/TestFiles/100K95ACT.xml", xmlf.XmlData);
 
-var inputData = File.ReadAllText("LocalResponse1.xml");
-
+var inputData = File.ReadAllText("../C54D_20240327224919000_original.localtest");
 var appr = ApplicationResponse.Deserialize(inputData);
 
-Console.WriteLine(appr);
+Console.WriteLine(appr.Content);

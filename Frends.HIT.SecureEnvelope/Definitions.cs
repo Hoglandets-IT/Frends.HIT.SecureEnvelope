@@ -323,6 +323,7 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
         public string ExecutionSerial { get; set; }
         public bool Encrypted { get; set; }
         public bool Compressed { get; set; }
+        public string CompressionMethod { get; set; }
         public FileDescriptor FileDescriptors { get; set; }
         public string FileType { get; set; }
         public string Content { get; set; }
@@ -344,7 +345,19 @@ namespace Frends.HIT.SecureEnvelope.Definitions {
             using (var sr = new StringReader(xml))
             using (XmlReader reader = XmlReader.Create(sr)) {
                 var appResponse = (ApplicationResponse)serializer.Deserialize(reader);
-                appResponse.Content = Helpers.Base64Decode(appResponse.Content);
+                // appResponse.Content = Helpers.Base64Decode(appResponse.Content);
+                appResponse.Content = Helpers.GetContentFromBase64(
+                    appResponse.Content,
+                    appResponse.Compressed,
+                    Encoding.UTF8
+                );
+
+                // // Try gunzip
+                // if (appResponse.Compressed && appResponse.CompressionMethod == "GZIP") {
+                //     appResponse.Content = Helpers.Gunzip(appResponse.Content);                    
+                // }
+
+
                 return appResponse;
             }
         }

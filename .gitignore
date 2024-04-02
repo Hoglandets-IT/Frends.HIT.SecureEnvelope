@@ -256,3 +256,5 @@ LocalOutput.xml
 Frends.HIT.SecureEnvelope.Old/
 Frends.HIT.SecureEnvelope.Test.old/
 Frends.HIT.SecureEnvelope.Tests/Local*.xml
+
+debug.log
